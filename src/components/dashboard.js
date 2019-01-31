@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import requiresLogin from './requires-login';
 import Cabinet from './cabinet';
 import CreateStrain from './create-strain';
@@ -11,7 +11,6 @@ export class Dashboard extends React.Component {
         return (
             <div>
                 <p>Welcome to the dashboard {this.props.userName}</p>
-                <Redirect to="/dashboard/cabinet" />
                 <Route path="/dashboard/cabinet" component={Cabinet}/>
                 <Route path="/dashboard/create" component={CreateStrain}/>
                 <Route path="/dashboard/edit" component={EditStrain}/>
