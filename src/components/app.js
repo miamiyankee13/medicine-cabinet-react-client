@@ -1,72 +1,69 @@
 import React from 'react';
-import { API_BASE_URL } from '../config';
+import { connect } from 'react-redux';
+import { Route, withRouter } from 'react-router-dom';
 
-export default class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            strains: [],
-            error: null,
-            loading: false
-        };   
+import LandingPage from './landing-page';
+import Dashboard from './dashboard';
+import Header from './header';
+
+import { refreshAuthToken } from '../actions/auth';
+
+export class App extends React.Component {
+    componentDidUpdate(prevProps) {
+        if (!prevProps.loggedIn && this.props.loggedIn) {
+            // When we are logged in, refresh the auth token periodically
+            this.startPeriodicRefresh();
+        } else if (prevProps.loggedIn && !this.props.loggedIn) {
+            // Stop refreshing when we log out
+            this.stopPeriodicRefresh();
+        }
     }
 
-    componentDidMount() {
-        this.getStrains();
+    componentWillUnmount() {
+        this.stopPeriodicRefresh();
     }
 
-    getStrains() {
-        this.setState({
-            error: null,
-            loading: true
-        });
-        return fetch(`${API_BASE_URL}/strains`)
-            .then(res => {
-                if (!res.ok) {
-                    return Promise.reject(res.statusText);
-                }
-                return res.json();
-            })
-            .then(results => {
-                this.setState({
-                    strains: results.strains,
-                    loading: false
-                });
-            })
-            .catch(err => {
-                this.setState({
-                    error: 'Could not load strains',
-                    loading: false
-                });
-            });
+    startPeriodicRefresh() {
+        this.refreshInterval = setInterval(
+            () => this.props.dispatch(refreshAuthToken()),
+            60 * 60 * 1000 // One hour
+        );
     }
-    
-    render() {
-        let body;
-        if (this.state.error) {
-            body = (
-                <div>{this.state.error}</div>
-            );
-        } else if (this.state.loading) {
-            body = (
-                <div>Loading strains...</div>
-            );
-        } else {
-            const strains = this.state.strains.map((strain, index) => {
-                return <div key={`strain-${index}`} data-index={index}>{strain.name}</div>
-            });
-            body = (
-                <div>
-                    {strains}
-                </div>
-            );
+
+    stopPeriodicRefresh() {
+        if (!this.refreshInterval) {
+            return;
         }
 
+        clearInterval(this.refreshInterval);
+    }
+
+    render() {
         return (
-            <div>
-                <h1>Medicine Cabinet</h1>
-                {body}
+            <div className="flex-container">
+                <div className="flex-top">
+                    <header>
+                        <Header />
+                    </header>
+                </div>
+                <div className="flex-bottom">
+                    <main className="flex-main">
+                        <Route path="/" component={LandingPage} />
+                        <Route path="/dashboard" component={Dashboard} />
+                    </main>
+                    <footer className="flex-footer">
+                        <p><small>Copyright &copy; 2019 Anthony D'Amico</small></p>
+                    </footer>
+                </div>
             </div>
         );
     }
 }
+
+const mapStateToProps = state => ({
+    hasAuthToken: state.auth.authToken !== null,
+    loggedIn: state.auth.currentUser !== null
+});
+
+// Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
+export default withRouter(connect(mapStateToProps)(App));
