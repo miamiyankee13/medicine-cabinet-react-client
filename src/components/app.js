@@ -5,6 +5,7 @@ import { Route, withRouter } from 'react-router-dom';
 import LandingPage from './landing-page';
 import Dashboard from './dashboard';
 import Header from './header';
+import RegistrationPage from './registration-page';
 
 import { refreshAuthToken } from '../actions/auth';
 
@@ -48,8 +49,9 @@ export class App extends React.Component {
                 </div>
                 <div className="flex-bottom">
                     <main className="flex-main">
-                        <Route path="/" component={LandingPage} />
+                        <Route exact path="/" component={LandingPage} />
                         <Route path="/dashboard" component={Dashboard} />
+                        <Route exact path="/register" component={RegistrationPage} />
                     </main>
                     <footer className="flex-footer">
                         <p><small>Copyright &copy; 2019 Anthony D'Amico</small></p>
