@@ -14,6 +14,9 @@ export class Nav extends React.Component {
         return (
             <ul>
                 <li><Link to="/" onClick={() => this.logOut()}>Log Out</Link></li>
+                <li><Link to="/dashboard/cabinet">My Cabinet</Link></li>
+                <li><Link to="/dashboard/create">Create Strain</Link></li>
+                <li><Link to="/dashboard/edit">Edit Strain</Link></li>
             </ul>
         )
     }
