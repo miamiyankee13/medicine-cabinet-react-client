@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import requiresLogin from './requires-login';
 import Cabinet from './cabinet';
 import CreateStrain from './create-strain';
@@ -10,10 +10,12 @@ export class Dashboard extends React.Component {
     render() {
         return (
             <div>
-                <p>Welcome to the dashboard {this.props.userName}</p>
-                <Route path="/dashboard/cabinet" component={Cabinet}/>
-                <Route path="/dashboard/create" component={CreateStrain}/>
-                <Route path="/dashboard/edit" component={EditStrain}/>
+                <p>Welcome, {this.props.userName}!</p>
+                <Switch>
+                    <Route path="/dashboard/cabinet" component={Cabinet}/>
+                    <Route path="/dashboard/create" component={CreateStrain}/>
+                    <Route path="/dashboard/edit" component={EditStrain}/>
+                </Switch>
             </div>
         );
     }

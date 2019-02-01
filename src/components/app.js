@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 
 import LandingPage from './landing-page';
 import Dashboard from './dashboard';
@@ -49,9 +49,11 @@ export class App extends React.Component {
                 </div>
                 <div className="flex-bottom">
                     <main className="flex-main">
-                        <Route exact path="/" component={LandingPage} />
-                        <Route path="/dashboard" component={Dashboard} />
-                        <Route exact path="/register" component={RegistrationPage} />
+                        <Switch>
+                            <Route exact path="/" component={LandingPage} />
+                            <Route path="/dashboard/:section" component={Dashboard} />
+                            <Route path="/register" component={RegistrationPage} />
+                        </Switch>
                     </main>
                     <footer className="flex-footer">
                         <p><small>Copyright &copy; 2019 Anthony D'Amico</small></p>
