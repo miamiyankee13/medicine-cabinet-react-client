@@ -5,6 +5,12 @@ import { clearAuth } from '../actions/auth';
 import { clearAuthToken } from '../local-storage';
 
 export class Nav extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.logOut = this.logOut.bind(this);
+    }
+    
     logOut() {
         this.props.dispatch(clearAuth());
         clearAuthToken();
@@ -13,7 +19,7 @@ export class Nav extends React.Component {
     render() {
         return (
             <ul>
-                <li><Link to="/" onClick={() => this.logOut()}>Log Out</Link></li>
+                <li><Link to="/" onClick={this.logOut}>Log Out</Link></li>
                 <li><Link to="/dashboard/cabinet">My Cabinet</Link></li>
                 <li><Link to="/dashboard/create">Create Strain</Link></li>
                 <li><Link to="/dashboard/edit">Edit Strain</Link></li>

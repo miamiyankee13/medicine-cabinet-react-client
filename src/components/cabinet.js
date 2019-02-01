@@ -5,15 +5,15 @@ import requiresLogin from './requires-login';
 export class Cabinet extends React.Component {
     render() {
         
-        const userStrainList = this.props.userStrains.map((strain, index) => {
+        const cabinetStrains = this.props.userStrains.map((strain, index) => {
             return (
-                <li key={`strain-${index}`}>{strain.name}</li>
+                <div key={`strain-${index}`} data-index={index}>{strain.name}</div>
             )
         });
 
         return (
             <div>
-                <ul>{userStrainList}</ul>
+                {cabinetStrains}
             </div>
         );
     }
