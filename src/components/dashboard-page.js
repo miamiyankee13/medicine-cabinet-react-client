@@ -5,9 +5,10 @@ import requiresLogin from './requires-login';
 import Cabinet from './cabinet';
 import CreateStrain from './create-strain';
 import EditStrain from './edit-strain';
+import StrainDetails from './strain-details';
 import { fetchUserStrains, fetchStrains } from '../actions/strain-data';
 
-export class Dashboard extends React.Component {
+export class DashboardPage extends React.Component {
     componentDidMount() {
         this.props.dispatch(fetchStrains());
         this.props.dispatch(fetchUserStrains());
@@ -18,9 +19,10 @@ export class Dashboard extends React.Component {
             <div>
                 <p>Welcome, {this.props.userName}!</p>
                 <Switch>
-                    <Route path="/dashboard/cabinet" component={Cabinet}/>
-                    <Route path="/dashboard/create" component={CreateStrain}/>
-                    <Route path="/dashboard/edit" component={EditStrain}/>
+                    <Route exact path="/dashboard/cabinet" component={Cabinet}/>
+                    <Route exact path="/dashboard/cabinet/:id" component={StrainDetails} />
+                    <Route exact path="/dashboard/create" component={CreateStrain}/>
+                    <Route exact path="/dashboard/edit" component={EditStrain}/>
                 </Switch>
             </div>
         );
@@ -33,4 +35,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default requiresLogin()(connect(mapStateToProps)(Dashboard));
+export default requiresLogin()(connect(mapStateToProps)(DashboardPage));

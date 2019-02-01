@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 
 import LandingPage from './landing-page';
-import Dashboard from './dashboard';
+import DashboardPage from './dashboard-page';
 import Header from './header';
 import RegistrationPage from './registration-page';
 
@@ -51,7 +51,7 @@ export class App extends React.Component {
                     <main className="flex-main">
                         <Switch>
                             <Route exact path="/" component={LandingPage} />
-                            <Route path="/dashboard/:section" component={Dashboard} />
+                            <Route path="/dashboard/:section" component={DashboardPage} />
                             <Route path="/register" component={RegistrationPage} />
                         </Switch>
                     </main>

@@ -2,8 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import StrainDropdown from './strain-dropdown';
+import { setCurrentStrain } from '../actions/strain-data'
 
 export class Cabinet extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.viewDetails = this.viewDetails.bind(this);
+    }
+    
+    viewDetails(event) {
+        event.preventDefault();
+        const index = event.target.getAttribute('data-index');
+        const strain = this.props.userStrains[index];
+        this.props.dispatch(setCurrentStrain(strain));
+        this.props.history.push(`/dashboard/cabinet/${strain._id}`)
+    }
+
     render() {
         if (!this.props.userStrains) {
             return null;
@@ -11,7 +26,11 @@ export class Cabinet extends React.Component {
 
         const cabinetStrains = this.props.userStrains.map((strain, index) => {
             return (
-                <div key={`strain-${index}`} data-index={index}>{strain.name}</div>
+                <div key={`strain-${index}`} className="cabinet-strain">
+                    <h2>{strain.name}</h2>
+                    <button data-index={index} onClick={this.viewDetails}>Strain Details</button>
+                    <button data-index={index}>Remove</button>
+                </div>
             )
         });
 

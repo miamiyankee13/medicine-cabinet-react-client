@@ -17,7 +17,7 @@ export class StrainDropdown extends React.Component {
         return (
             <div>
                 <form>
-                    <label for="strain-select">Select a Strain</label>
+                    <label htmlFor="strain-select">Select a Strain</label>
                     <select id="strain-select">
                         <option value="">--Select a Strain--</option>
                         {strainOptions}

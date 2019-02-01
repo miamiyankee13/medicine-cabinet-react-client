@@ -4,7 +4,8 @@ import {
     FETCH_USER_STRAINS_ERROR,
     FETCH_STRAINS_REQUEST,
     FETCH_STRAINS_SUCCESS,
-    FETCH_STRAINS_ERROR 
+    FETCH_STRAINS_ERROR, 
+    SET_CURRENT_STRAIN
 } from '../actions/strain-data';
 
 const initialState = {
@@ -46,6 +47,10 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {
                 loading: false,
                 error: action.error
+            });
+        case SET_CURRENT_STRAIN:
+            return Object.assign({}, state, {
+                currentStrain: action.data
             });
 
         default:

@@ -35,6 +35,12 @@ export const fetchStrainsError = error => ({
     error
 });
 
+export const SET_CURRENT_STRAIN = 'SET_CURRENT_STRAIN';
+export const setCurrentStrain = data => ({
+    type: SET_CURRENT_STRAIN,
+    data
+});
+
 export const fetchUserStrains = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     dispatch(fetchUserStrainsRequest());
