@@ -35,10 +35,21 @@ export const fetchStrainsError = error => ({
     error
 });
 
-export const SET_CURRENT_STRAIN = 'SET_CURRENT_STRAIN';
-export const setCurrentStrain = data => ({
-    type: SET_CURRENT_STRAIN,
+export const FETCH_CURRENT_STRAIN_REQUEST = 'FETCH_CURRENT_STRAIN_REQUEST';
+export const fetchCurrentStrainRequest = () => ({
+    type: FETCH_CURRENT_STRAIN_REQUEST
+});
+
+export const FETCH_CURRENT_STRAIN_SUCCESS = 'FETCH_CURRENT_STRAIN';
+export const fetchCurrentStrainSuccess = data => ({
+    type: FETCH_CURRENT_STRAIN_SUCCESS,
     data
+});
+
+export const FETCH_CURRENT_STRAIN_ERROR = 'FETCH_CURRENT_STRAIN_ERROR';
+export const fetchCurrentStrainError = error => ({
+    type: FETCH_CURRENT_STRAIN_ERROR,
+    error
 });
 
 export const fetchUserStrains = () => (dispatch, getState) => {
@@ -68,5 +79,18 @@ export const fetchStrains = () => (dispatch) => {
         .then(res => dispatch(fetchStrainsSuccess(res)))
         .catch(err => {
             dispatch(fetchStrainsError(err));
+        })
+}
+
+export const fetchCurrentStrain = (id) => (dispatch) => {
+    dispatch(fetchCurrentStrainRequest())
+    return fetch(`${API_BASE_URL}/strains/${id}`, {
+        method: 'GET'
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then(res => dispatch(fetchCurrentStrainSuccess(res)))
+        .catch(err => {
+            dispatch(fetchCurrentStrainError());
         })
 }

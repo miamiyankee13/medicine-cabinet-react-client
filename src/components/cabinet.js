@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import StrainDropdown from './strain-dropdown';
-import { setCurrentStrain } from '../actions/strain-data'
 
 export class Cabinet extends React.Component {
     constructor(props) {
@@ -15,7 +14,6 @@ export class Cabinet extends React.Component {
         event.preventDefault();
         const index = event.target.getAttribute('data-index');
         const strain = this.props.userStrains[index];
-        this.props.dispatch(setCurrentStrain(strain));
         this.props.history.push(`/dashboard/cabinet/${strain._id}`)
     }
 

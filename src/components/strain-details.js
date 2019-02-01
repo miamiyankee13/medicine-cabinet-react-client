@@ -1,10 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
+import { fetchCurrentStrain } from '../actions/strain-data'
 
-export class StrainDetails extends React.Component {
+export class StrainDetails extends React.Component {    
+    componentDidMount() {
+        this.props.dispatch(fetchCurrentStrain(this.props.match.params.id))
+    }
+    
     render() {
-        
+        if (!this.props.strain) {
+            return null;
+        }
+
         const comments = this.props.strain.comments.map((comment, index) => {
             let removeButton;
             if (this.props.currentUser === comment.author) {
@@ -43,9 +51,10 @@ export class StrainDetails extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         strain: state.strainData.currentStrain,
+        userStrains: state.strainData.userStrains,
         currentUser: state.auth.currentUser.userName
     };
 };
