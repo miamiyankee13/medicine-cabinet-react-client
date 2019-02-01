@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
+import StrainDropdown from './strain-dropdown';
 
 export class Cabinet extends React.Component {
     render() {
@@ -16,16 +17,19 @@ export class Cabinet extends React.Component {
 
         return (
             <div>
-                {cabinetStrains}
+                <StrainDropdown />
+                <p>Strains in Cabinet: {cabinetStrains.length}</p>
+                <div className="flex-cabinet">
+                    {cabinetStrains}
+                </div>
             </div>
         );
     }
 }
 
 const mapStateToProps = state => {
-    console.log(state.strainData.userStrains.strains);
     return {
-        userStrains: state.strainData.userStrains,
+        userStrains: state.strainData.userStrains
     };
 };
 

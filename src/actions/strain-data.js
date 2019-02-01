@@ -18,6 +18,23 @@ export const fetchUserStrainsError = error => ({
     error
 });
 
+export const FETCH_STRAINS_REQUEST = 'FETCH_STRAINS_REQUEST';
+export const fetchStrainsRequest = () => ({
+    type: FETCH_STRAINS_REQUEST
+});
+
+export const FETCH_STRAINS_SUCCESS = 'FETCH_STRAINS_SUCCESS';
+export const fetchStrainsSuccess = data => ({
+    type: FETCH_STRAINS_SUCCESS,
+    data
+});
+
+export const FETCH_STRAINS_ERROR = 'FETCH_STRAINS_ERROR';
+export const fetchStrainsError = error => ({
+    type: FETCH_STRAINS_ERROR,
+    error
+});
+
 export const fetchUserStrains = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     dispatch(fetchUserStrainsRequest());
@@ -29,8 +46,21 @@ export const fetchUserStrains = () => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then((res) => dispatch(fetchUserStrainsSuccess(res)))
+        .then(res => dispatch(fetchUserStrainsSuccess(res)))
         .catch(err => {
             dispatch(fetchUserStrainsError(err));
         });
+}
+
+export const fetchStrains = () => (dispatch) => {
+    dispatch(fetchStrainsRequest());
+    return fetch(`${API_BASE_URL}/strains`, {
+        method: 'GET'
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then(res => dispatch(fetchStrainsSuccess(res)))
+        .catch(err => {
+            dispatch(fetchStrainsError(err));
+        })
 }

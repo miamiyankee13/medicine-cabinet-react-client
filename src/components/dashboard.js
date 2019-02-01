@@ -5,10 +5,11 @@ import requiresLogin from './requires-login';
 import Cabinet from './cabinet';
 import CreateStrain from './create-strain';
 import EditStrain from './edit-strain';
-import { fetchUserStrains } from '../actions/strain-data';
+import { fetchUserStrains, fetchStrains } from '../actions/strain-data';
 
 export class Dashboard extends React.Component {
     componentDidMount() {
+        this.props.dispatch(fetchStrains());
         this.props.dispatch(fetchUserStrains());
     }
     
