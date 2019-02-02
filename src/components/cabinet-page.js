@@ -45,7 +45,6 @@ export class CabinetPage extends React.Component {
         return (
             <div>
                 <StrainDropdown />
-                <p>Strains in Cabinet: {cabinetStrains.length}</p>
                 <div className="flex-cabinet">
                     {cabinetStrains}
                 </div>

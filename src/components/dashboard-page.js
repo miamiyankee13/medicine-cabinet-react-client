@@ -18,6 +18,7 @@ export class DashboardPage extends React.Component {
         return (
             <div>
                 <p>Welcome, {this.props.userName}!</p>
+                <p>Strains in Cabinet: {this.props.userStrains.length}</p>
                 <Switch>
                     <Route exact path="/dashboard/cabinet" component={CabinetPage}/>
                     <Route exact path="/dashboard/cabinet/:id" component={StrainDetailsPage}/>
@@ -32,6 +33,7 @@ export class DashboardPage extends React.Component {
 const mapStateToProps = state => {
     return {
         userName: state.auth.currentUser.userName,
+        userStrains: state.strainData.userStrains
     };
 };
 
