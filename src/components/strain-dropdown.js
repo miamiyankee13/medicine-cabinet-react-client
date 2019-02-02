@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addStrainToCabinet, fetchUserStrains } from '../actions/strain-data';
+import StrainOptions from './strain-options';
 
 export class StrainDropdown extends React.Component {
     constructor(props) {
@@ -34,23 +35,13 @@ export class StrainDropdown extends React.Component {
     
 
     render() {
-        if (!this.props.strains) {
-            return null;
-        }
-        
-        const strainOptions = this.props.strains.map((strain, index) => {
-            return (
-                <option key={`strain-${index}`} value={index}>{strain.name}</option>
-            )
-        });
-
         return (
             <div>
                 <form onSubmit={this.addStrain}>
                     <label htmlFor="strain-select">Select a Strain</label>
                     <select id="strain-select" onChange={this.handleChange}>
                         <option value="">--Select a Strain--</option>
-                        {strainOptions}
+                        <StrainOptions />
                     </select>
                     <button type="submit">Add Strain</button>
                 </form>
