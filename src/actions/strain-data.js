@@ -40,7 +40,7 @@ export const fetchCurrentStrainRequest = () => ({
     type: FETCH_CURRENT_STRAIN_REQUEST
 });
 
-export const FETCH_CURRENT_STRAIN_SUCCESS = 'FETCH_CURRENT_STRAIN';
+export const FETCH_CURRENT_STRAIN_SUCCESS = 'FETCH_CURRENT_STRAIN_SUCCESS';
 export const fetchCurrentStrainSuccess = data => ({
     type: FETCH_CURRENT_STRAIN_SUCCESS,
     data
@@ -97,6 +97,22 @@ export const addCommentToStrainSuccess = () => ({
 export const ADD_COMMENT_TO_STRAIN_ERROR = 'ADD_COMMENT_TO_STRAIN_ERROR';
 export const addCommentToStrainError = error => ({
     type: ADD_COMMENT_TO_STRAIN_ERROR,
+    error
+});
+
+export const REMOVE_COMMENT_FROM_STRAIN_REQUEST = 'REMOVE_COMMENT_FROM_STRAIN_REQUEST';
+export const removeCommentFromStrainRequest = () => ({
+    type: REMOVE_COMMENT_FROM_STRAIN_REQUEST
+});
+
+export const REMOVE_COMMENT_FROM_STRAIN_SUCCESS = 'REMOVE_COMMENT_FROM_STRAIN_SUCCESS';
+export const removeCommentFromStrainSuccess = () => ({
+    type: REMOVE_STRAIN_FROM_CABINET_SUCCESS
+});
+
+export const REMOVE_COMMENT_FROM_STRAIN_ERROR = 'REMOVE_COMMENT_FROM_STRAIN_ERROR';
+export const removeCommentFromStrainError = error => ({
+    type: REMOVE_COMMENT_FROM_STRAIN_ERROR,
     error
 });
 
@@ -197,5 +213,21 @@ export const addCommentToStrain = (id, content, author) => (dispatch, getState) 
         .then(() => dispatch(addCommentToStrainSuccess()))
         .catch(err => {
             dispatch(addCommentToStrainError(err))
+        })
+}
+
+export const removeCommentFromStrain = (id, commentId) => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    dispatch(removeCommentFromStrainRequest());
+    return fetch(`${API_BASE_URL}/strains/${id}/${commentId}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(() => dispatch(removeCommentFromStrainSuccess()))
+        .catch(err => {
+            dispatch(removeCommentFromStrainError(err))
         })
 }

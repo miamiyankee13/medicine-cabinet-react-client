@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-import { fetchCurrentStrain, addCommentToStrain } from '../actions/strain-data'
+import { fetchCurrentStrain, addCommentToStrain, removeCommentFromStrain } from '../actions/strain-data'
 
 export class StrainDetails extends React.Component {    
     constructor(props) {
@@ -12,6 +12,7 @@ export class StrainDetails extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.addComment = this.addComment.bind(this);
+        this.removeComment = this.removeComment.bind(this);
     }
     
     componentDidMount() {
@@ -28,9 +29,21 @@ export class StrainDetails extends React.Component {
         event.preventDefault();
         const strain = this.props.strain;
         const content = this.state.value;
-        const author = this.props.currentUser
+        const author = this.props.currentUser;
         this.props.dispatch(addCommentToStrain(strain._id, content, author))
-            .then(() => this.props.dispatch(fetchCurrentStrain(strain._id)))
+            .then(() => this.props.dispatch(fetchCurrentStrain(strain._id)));
+        this.setState({
+            value: ''
+        });
+    }
+
+    removeComment(event) {
+        event.preventDefault();
+        const strain = this.props.strain;
+        const index = event.target.getAttribute('data-index');
+        const comment = this.props.strain.comments[index];
+        this.props.dispatch(removeCommentFromStrain(strain._id, comment._id))
+            .then(() => this.props.dispatch(fetchCurrentStrain(strain._id)));
     }
     
     render() {
@@ -41,7 +54,7 @@ export class StrainDetails extends React.Component {
         const comments = this.props.strain.comments.map((comment, index) => {
             let removeButton;
             if (this.props.currentUser === comment.author) {
-                removeButton = <button data-index={index}>Remove</button>;
+                removeButton = <button data-index={index} onClick={this.removeComment}>Remove</button>;
             } else {
                 removeButton = '';
             }
