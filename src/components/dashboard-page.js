@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import requiresLogin from './requires-login';
-import Cabinet from './cabinet';
-import CreateStrain from './create-strain';
-import EditStrain from './edit-strain';
-import StrainDetails from './strain-details';
+import CabinetPage from './cabinet-page';
+import CreateStrainPage from './create-strain-page';
+import EditStrainPage from './edit-strain-page';
+import StrainDetailsPage from './strain-details-page';
 import { fetchUserStrains, fetchStrains } from '../actions/strain-data';
 
 export class DashboardPage extends React.Component {
@@ -19,10 +19,10 @@ export class DashboardPage extends React.Component {
             <div>
                 <p>Welcome, {this.props.userName}!</p>
                 <Switch>
-                    <Route exact path="/dashboard/cabinet" component={Cabinet}/>
-                    <Route exact path="/dashboard/cabinet/:id" component={StrainDetails} />
-                    <Route exact path="/dashboard/create" component={CreateStrain}/>
-                    <Route exact path="/dashboard/edit" component={EditStrain}/>
+                    <Route exact path="/dashboard/cabinet" component={CabinetPage}/>
+                    <Route exact path="/dashboard/cabinet/:id" component={StrainDetailsPage} />
+                    <Route exact path="/dashboard/create" component={CreateStrainPage}/>
+                    <Route exact path="/dashboard/edit" component={EditStrainPage}/>
                 </Switch>
             </div>
         );

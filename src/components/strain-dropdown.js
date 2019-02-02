@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import requiresLogin from './requires-login';
 import { addStrainToCabinet, fetchUserStrains } from '../actions/strain-data';
 
 export class StrainDropdown extends React.Component {
@@ -67,4 +66,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default requiresLogin()(connect(mapStateToProps)(StrainDropdown));
+export default (connect(mapStateToProps)(StrainDropdown));

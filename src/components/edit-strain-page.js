@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 
-export class EditStrain extends React.Component {
+export class EditStrainPage extends React.Component {
     render() {
         return (
             <div>
@@ -12,4 +12,4 @@ export class EditStrain extends React.Component {
     }
 }
 
-export default requiresLogin()(connect()(EditStrain));
+export default requiresLogin()(connect()(EditStrainPage));

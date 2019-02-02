@@ -4,7 +4,7 @@ import requiresLogin from './requires-login';
 import StrainDropdown from './strain-dropdown';
 import { removeStrainFromCabinet, fetchUserStrains } from '../actions/strain-data'
 
-export class Cabinet extends React.Component {
+export class CabinetPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -60,4 +60,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default requiresLogin()(connect(mapStateToProps)(Cabinet));
+export default requiresLogin()(connect(mapStateToProps)(CabinetPage));

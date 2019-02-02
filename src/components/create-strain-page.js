@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import CreateSrainForm from './create-strain-form';
 
-export class CreateStrain extends React.Component {
+export class CreateStrainPage extends React.Component {
     render() {
         let errorMessage;
 
@@ -29,4 +29,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default requiresLogin()(connect(mapStateToProps)(CreateStrain));
+export default requiresLogin()(connect(mapStateToProps)(CreateStrainPage));

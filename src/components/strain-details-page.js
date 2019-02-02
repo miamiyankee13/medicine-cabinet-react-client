@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchCurrentStrain, addCommentToStrain, removeCommentFromStrain } from '../actions/strain-data'
 
-export class StrainDetails extends React.Component {    
+export class StrainDetailsPage extends React.Component {    
     constructor(props) {
         super(props)
         this.state = {
@@ -108,4 +108,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default requiresLogin()(connect(mapStateToProps)(StrainDetails));
+export default requiresLogin()(connect(mapStateToProps)(StrainDetailsPage));
