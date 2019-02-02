@@ -116,6 +116,23 @@ export const removeCommentFromStrainError = error => ({
     error
 });
 
+export const CREATE_STRAIN_REQUEST = 'CREATE_STRAIN_REQUEST';
+export const createStrainRequest = () => ({
+    type: CREATE_STRAIN_REQUEST
+});
+
+export const CREATE_STRAIN_SUCCESS = 'CREATE_STRAIN_SUCCESS';
+export const createStrainSuccess = () => ({
+    type: CREATE_STRAIN_SUCCESS
+});
+
+export const CREATE_STRAIN_ERROR = 'CREATE_STRAIN_ERROR';
+export const createStrainError = error => ({
+    type: CREATE_STRAIN_ERROR,
+    error
+})
+
+
 export const fetchUserStrains = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     dispatch(fetchUserStrainsRequest());
@@ -229,5 +246,29 @@ export const removeCommentFromStrain = (id, commentId) => (dispatch, getState) =
         .then(() => dispatch(removeCommentFromStrainSuccess()))
         .catch(err => {
             dispatch(removeCommentFromStrainError(err))
+        })
+}
+
+export const createStrain = (name, type, flavor, description) => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    dispatch(createStrainRequest());
+    return fetch(`${API_BASE_URL}/strains`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            name,
+            type,
+            flavor,
+            description
+        })
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then(() => dispatch(createStrainSuccess()))
+        .catch(err => {
+            dispatch(createStrainError(err))
         })
 }
