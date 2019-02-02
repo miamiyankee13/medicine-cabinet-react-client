@@ -132,6 +132,22 @@ export const createStrainError = error => ({
     error
 })
 
+export const EDIT_STRAIN_REQUEST = 'EDIT_STRAIN_REQUEST';
+export const editStrainRequest = () => ({
+    type: EDIT_STRAIN_REQUEST
+});
+
+export const EDIT_STRAIN_SUCCESS = 'EDIT_STRAIN_SUCCESS';
+export const editStrainSuccess = () => ({
+    type: EDIT_STRAIN_SUCCESS
+});
+
+export const EDIT_STRAIN_ERROR = 'EDIT_STRAIN_ERROR';
+export const editStrainError = error => ({
+    type: EDIT_STRAIN_ERROR,
+    error
+});
+
 
 export const fetchUserStrains = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
@@ -270,5 +286,30 @@ export const createStrain = (name, type, flavor, description) => (dispatch, getS
         .then(() => dispatch(createStrainSuccess()))
         .catch(err => {
             dispatch(createStrainError(err))
+        })
+}
+
+export const editStrain = (id, name, type, flavor, description) => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    dispatch(editStrainRequest());
+    return fetch(`${API_BASE_URL}/strains/${id}`, {
+        method: 'PUT',
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            _id: id,
+            name,
+            type,
+            flavor,
+            description
+        })
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then(() => dispatch(editStrainSuccess()))
+        .catch(err => {
+            dispatch(editStrainError(err))
         })
 }

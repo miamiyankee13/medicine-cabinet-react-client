@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-import CreateSrainForm from './create-strain-form';
+import CreateStrainForm from './create-strain-form';
 
 export class CreateStrainPage extends React.Component {
     render() {
@@ -17,7 +17,7 @@ export class CreateStrainPage extends React.Component {
             <div>
                 <h2>Create a Strain</h2>
                 {errorMessage}
-                <CreateSrainForm />
+                <CreateStrainForm />
             </div>
         );
     }
