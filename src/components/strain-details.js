@@ -30,6 +30,10 @@ export class StrainDetails extends React.Component {
         const strain = this.props.strain;
         const content = this.state.value;
         const author = this.props.currentUser;
+        if (content === '' || content === ' ') {
+            alert('Comment is blank. Please add some content')
+            return
+        }
         this.props.dispatch(addCommentToStrain(strain._id, content, author))
             .then(() => this.props.dispatch(fetchCurrentStrain(strain._id)));
         this.setState({
