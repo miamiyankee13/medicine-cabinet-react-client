@@ -6,6 +6,7 @@ import LandingPage from './landing-page';
 import DashboardPage from './dashboard-page';
 import Header from './header';
 import RegistrationPage from './registration-page';
+import NotFound from './not-found';
 
 import { refreshAuthToken } from '../actions/auth';
 
@@ -51,8 +52,9 @@ export class App extends React.Component {
                     <main className="flex-main">
                         <Switch>
                             <Route exact path="/" component={LandingPage} />
-                            <Route path="/dashboard/:section" component={DashboardPage} />
+                            <Route path="/dashboard/:section?" component={DashboardPage} />
                             <Route path="/register" component={RegistrationPage} />
+                            <Route component={NotFound} />
                         </Switch>
                     </main>
                     <footer className="flex-footer">
