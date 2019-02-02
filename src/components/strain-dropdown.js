@@ -29,7 +29,8 @@ export class StrainDropdown extends React.Component {
             alert('This strain is already in your cabinet');
             return
         }
-        this.props.dispatch(addStrainToCabinet(strain._id)).then(() => this.props.dispatch(fetchUserStrains()))
+        this.props.dispatch(addStrainToCabinet(strain._id))
+            .then(() => this.props.dispatch(fetchUserStrains()))
     }
     
 

@@ -23,7 +23,8 @@ export class Cabinet extends React.Component {
         event.preventDefault();
         const index = event.target.getAttribute('data-index');
         const strain = this.props.userStrains[index];
-        this.props.dispatch(removeStrainFromCabinet(strain._id)).then(() => this.props.dispatch(fetchUserStrains()));
+        this.props.dispatch(removeStrainFromCabinet(strain._id))
+            .then(() => this.props.dispatch(fetchUserStrains()));
     }
 
     render() {

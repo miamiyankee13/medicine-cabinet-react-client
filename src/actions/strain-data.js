@@ -84,6 +84,22 @@ export const removeStrainFromCabinetError = error => ({
     error
 })
 
+export const ADD_COMMENT_TO_STRAIN_REQUEST = 'ADD_COMMENT_TO_STRAIN_REQUEST';
+export const addCommentToStrainRequest = () => ({
+    type: ADD_COMMENT_TO_STRAIN_REQUEST
+});
+
+export const ADD_COMMENT_TO_STRAIN_SUCCESS = 'ADD_COMMENT_TO_STRAIN_SUCCESS';
+export const addCommentToStrainSuccess = () => ({
+    type: ADD_COMMENT_TO_STRAIN_SUCCESS
+});
+
+export const ADD_COMMENT_TO_STRAIN_ERROR = 'ADD_COMMENT_TO_STRAIN_ERROR';
+export const addCommentToStrainError = error => ({
+    type: ADD_COMMENT_TO_STRAIN_ERROR,
+    error
+});
+
 export const fetchUserStrains = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     dispatch(fetchUserStrainsRequest());
@@ -157,5 +173,29 @@ export const removeStrainFromCabinet = (id) => (dispatch, getState) => {
         .then(() => dispatch(removeStrainFromCabinetSuccess()))
         .catch(err => {
             dispatch(removeStrainFromCabinetError(err))
+        })
+}
+
+export const addCommentToStrain = (id, content, author) => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    dispatch(addCommentToStrainRequest());
+    return fetch(`${API_BASE_URL}/strains/${id}`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            comment: {
+                content,
+                author
+            }
+        })
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then(() => dispatch(addCommentToStrainSuccess()))
+        .catch(err => {
+            dispatch(addCommentToStrainError(err))
         })
 }

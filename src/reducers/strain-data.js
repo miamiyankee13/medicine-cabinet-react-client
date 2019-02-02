@@ -13,7 +13,10 @@ import {
     ADD_STRAIN_TO_CABINET_ERROR,
     REMOVE_STRAIN_FROM_CABINET_REQUEST,
     REMOVE_STRAIN_FROM_CABINET_SUCCESS,
-    REMOVE_STRAIN_FROM_CABINET_ERROR
+    REMOVE_STRAIN_FROM_CABINET_ERROR,
+    ADD_COMMENT_TO_STRAIN_REQUEST,
+    ADD_COMMENT_TO_STRAIN_SUCCESS,
+    ADD_COMMENT_TO_STRAIN_ERROR
 } from '../actions/strain-data';
 
 const initialState = {
@@ -78,8 +81,7 @@ export default function reducer(state = initialState, action) {
             });
         case ADD_STRAIN_TO_CABINET_SUCCESS:
             return Object.assign({}, state, {
-                loading: false,
-                error: null
+                loading: false
             })
         case ADD_STRAIN_TO_CABINET_ERROR:
             return Object.assign({}, state, {
@@ -93,10 +95,23 @@ export default function reducer(state = initialState, action) {
             });
         case REMOVE_STRAIN_FROM_CABINET_SUCCESS:
             return Object.assign({}, state, {
-                loading: false,
-                error: null
+                loading: false
             });
         case REMOVE_STRAIN_FROM_CABINET_ERROR:
+            return Object.assign({}, state, {
+                loading: false,
+                error: action.error.message
+            });
+        case ADD_COMMENT_TO_STRAIN_REQUEST:
+            return Object.assign({}, state, {
+                loading: true,
+                error: null
+            });
+        case ADD_COMMENT_TO_STRAIN_SUCCESS:
+            return Object.assign({}, state, {
+                loading: false
+            });
+        case ADD_COMMENT_TO_STRAIN_ERROR:
             return Object.assign({}, state, {
                 loading: false,
                 error: action.error.message
