@@ -10,7 +10,10 @@ import {
     FETCH_CURRENT_STRAIN_ERROR,
     ADD_STRAIN_TO_CABINET_REQUEST,
     ADD_STRAIN_TO_CABINET_SUCCESS,
-    ADD_STRAIN_TO_CABINET_ERROR
+    ADD_STRAIN_TO_CABINET_ERROR,
+    REMOVE_STRAIN_FROM_CABINET_REQUEST,
+    REMOVE_STRAIN_FROM_CABINET_SUCCESS,
+    REMOVE_STRAIN_FROM_CABINET_ERROR
 } from '../actions/strain-data';
 
 const initialState = {
@@ -36,7 +39,7 @@ export default function reducer(state = initialState, action) {
         case FETCH_USER_STRAINS_ERROR:
             return Object.assign({}, state, {
                 loading: false,
-                error: action.error
+                error: action.error.message
             });
         case FETCH_STRAINS_REQUEST:
             return Object.assign({}, state, {
@@ -51,7 +54,7 @@ export default function reducer(state = initialState, action) {
         case FETCH_STRAINS_ERROR:
             return Object.assign({}, state, {
                 loading: false,
-                error: action.error
+                error: action.error.message
             });
         case FETCH_CURRENT_STRAIN_REQUEST:
             return Object.assign({}, state, {
@@ -66,7 +69,7 @@ export default function reducer(state = initialState, action) {
         case FETCH_CURRENT_STRAIN_ERROR:
             return Object.assign({}, state, {
                 loading: false,
-                error: action.error
+                error: action.error.message
             });
         case ADD_STRAIN_TO_CABINET_REQUEST:
             return Object.assign({}, state, {
@@ -81,7 +84,22 @@ export default function reducer(state = initialState, action) {
         case ADD_STRAIN_TO_CABINET_ERROR:
             return Object.assign({}, state, {
                 loading: false,
-                error: action.error
+                error: action.error.message
+            });
+        case REMOVE_STRAIN_FROM_CABINET_REQUEST:
+            return Object.assign({}, state, {
+                loading: true,
+                error: null
+            });
+        case REMOVE_STRAIN_FROM_CABINET_SUCCESS:
+            return Object.assign({}, state, {
+                loading: false,
+                error: null
+            });
+        case REMOVE_STRAIN_FROM_CABINET_ERROR:
+            return Object.assign({}, state, {
+                loading: false,
+                error: action.error.message
             });
 
         default:

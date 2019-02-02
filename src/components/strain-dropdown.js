@@ -24,7 +24,7 @@ export class StrainDropdown extends React.Component {
         event.preventDefault();
         const index = this.state.value;
         const strain = this.props.strains[index]
-        const strainExists = this.props.strains.find(element => element._id === strain._id)
+        const strainExists = this.props.userStrains.find(element => element._id === strain._id)
         if (strainExists) {
             alert('This strain is already in your cabinet');
             return
@@ -62,6 +62,7 @@ export class StrainDropdown extends React.Component {
 const mapStateToProps = state => {
     return {
         strains: state.strainData.strains,
+        userStrains: state.strainData.userStrains
     };
 };
 

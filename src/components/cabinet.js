@@ -2,19 +2,28 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import StrainDropdown from './strain-dropdown';
+import { removeStrainFromCabinet, fetchUserStrains } from '../actions/strain-data'
 
 export class Cabinet extends React.Component {
     constructor(props) {
         super(props);
 
         this.viewDetails = this.viewDetails.bind(this);
+        this.removeStrain = this.removeStrain.bind(this);
     }
     
     viewDetails(event) {
         event.preventDefault();
         const index = event.target.getAttribute('data-index');
         const strain = this.props.userStrains[index];
-        this.props.history.push(`/dashboard/cabinet/${strain._id}`)
+        this.props.history.push(`/dashboard/cabinet/${strain._id}`);
+    }
+
+    removeStrain(event) {
+        event.preventDefault();
+        const index = event.target.getAttribute('data-index');
+        const strain = this.props.userStrains[index];
+        this.props.dispatch(removeStrainFromCabinet(strain._id)).then(() => this.props.dispatch(fetchUserStrains()));
     }
 
     render() {
@@ -27,7 +36,7 @@ export class Cabinet extends React.Component {
                 <div key={`strain-${index}`} className="cabinet-strain">
                     <h2>{strain.name}</h2>
                     <button data-index={index} onClick={this.viewDetails}>Strain Details</button>
-                    <button data-index={index}>Remove</button>
+                    <button data-index={index} onClick={this.removeStrain}>Remove</button>
                 </div>
             )
         });

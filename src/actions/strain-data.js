@@ -68,6 +68,22 @@ export const addStrainToCabinetError = error => ({
     error
 });
 
+export const REMOVE_STRAIN_FROM_CABINET_REQUEST = 'REMOVE_STRAIN_FROM_CABINET_REQUEST';
+export const removeStrainFromCabinetRequest = () => ({
+    type: REMOVE_STRAIN_FROM_CABINET_REQUEST
+});
+
+export const REMOVE_STRAIN_FROM_CABINET_SUCCESS = 'REMOVE_STRAIN_FROM_CABINET_SUCCESS';
+export const removeStrainFromCabinetSuccess = () => ({
+    type: REMOVE_STRAIN_FROM_CABINET_SUCCESS
+});
+
+export const REMOVE_STRAIN_FROM_CABINET_ERROR = 'REMOVE_STRAIN_FROM_CABINET_ERROR';
+export const removeStrainFromCabinetError = error => ({
+    type: REMOVE_STRAIN_FROM_CABINET_ERROR,
+    error
+})
+
 export const fetchUserStrains = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     dispatch(fetchUserStrainsRequest());
@@ -125,5 +141,21 @@ export const addStrainToCabinet = (id) => (dispatch, getState) => {
         .then(() => dispatch(addStrainToCabinetSuccess()))
         .catch(err => {
             dispatch(addStrainToCabinetError(err))
+        })
+}
+
+export const removeStrainFromCabinet = (id) => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    dispatch(removeStrainFromCabinetRequest());
+    return fetch(`${API_BASE_URL}/users/strains/${id}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(() => dispatch(removeStrainFromCabinetSuccess()))
+        .catch(err => {
+            dispatch(removeStrainFromCabinetError(err))
         })
 }
