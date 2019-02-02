@@ -52,6 +52,22 @@ export const fetchCurrentStrainError = error => ({
     error
 });
 
+export const ADD_STRAIN_TO_CABINET_REQUEST = 'ADD_STRAIN_TO_CABINET_REQUEST';
+export const addStrainToCabinetRequest = () => ({
+    type: ADD_STRAIN_TO_CABINET_REQUEST,
+});
+
+export const ADD_STRAIN_TO_CABINET_SUCCESS = 'ADD_STRAIN_TO_CABINET_SUCCESS';
+export const addStrainToCabinetSuccess = () => ({
+    type: ADD_STRAIN_TO_CABINET_SUCCESS
+});
+
+export const ADD_STRAIN_TO_CABINET_ERROR = 'ADD_STRAIN_TO_CABINET_ERROR';
+export const addStrainToCabinetError = error => ({
+    type: ADD_STRAIN_TO_CABINET_ERROR,
+    error
+});
+
 export const fetchUserStrains = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     dispatch(fetchUserStrainsRequest());
@@ -91,6 +107,23 @@ export const fetchCurrentStrain = (id) => (dispatch) => {
         .then(res => res.json())
         .then(res => dispatch(fetchCurrentStrainSuccess(res)))
         .catch(err => {
-            dispatch(fetchCurrentStrainError());
+            dispatch(fetchCurrentStrainError(err));
+        })
+}
+
+export const addStrainToCabinet = (id) => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    dispatch(addStrainToCabinetRequest());
+    return fetch(`${API_BASE_URL}/users/strains/${id}`, {
+        method: 'PUT',
+        headers: {
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then(() => dispatch(addStrainToCabinetSuccess()))
+        .catch(err => {
+            dispatch(addStrainToCabinetError(err))
         })
 }

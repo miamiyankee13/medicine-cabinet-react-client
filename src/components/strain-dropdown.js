@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
+import { addStrainToCabinet, fetchUserStrains } from '../actions/strain-data';
 
 export class StrainDropdown extends React.Component {
     constructor(props) {
@@ -10,7 +11,7 @@ export class StrainDropdown extends React.Component {
         }
 
         this.handleChange = this.handleChange.bind(this);
-        //this.addToCabinet = this.addToCabinet.bind(this);
+        this.addStrain = this.addStrain.bind(this);
     }
     
     handleChange(event) {
@@ -19,12 +20,17 @@ export class StrainDropdown extends React.Component {
         });
     }
 
-    //addToCabinet(event) {
-        //event.preventDefault();
-        //const index = this.state.value;
-        //const strain = this.props.strains[index]
-        //this.props.dispatch(addToCabinet(strain._id))
-    //}
+    addStrain(event) {
+        event.preventDefault();
+        const index = this.state.value;
+        const strain = this.props.strains[index]
+        const strainExists = this.props.strains.find(element => element._id === strain._id)
+        if (strainExists) {
+            alert('This strain is already in your cabinet');
+            return
+        }
+        this.props.dispatch(addStrainToCabinet(strain._id)).then(() => this.props.dispatch(fetchUserStrains()))
+    }
     
 
     render() {
@@ -40,7 +46,7 @@ export class StrainDropdown extends React.Component {
 
         return (
             <div>
-                <form>
+                <form onSubmit={this.addStrain}>
                     <label htmlFor="strain-select">Select a Strain</label>
                     <select id="strain-select" onChange={this.handleChange}>
                         <option value="">--Select a Strain--</option>

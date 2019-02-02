@@ -7,7 +7,10 @@ import {
     FETCH_STRAINS_ERROR, 
     FETCH_CURRENT_STRAIN_REQUEST,
     FETCH_CURRENT_STRAIN_SUCCESS,
-    FETCH_CURRENT_STRAIN_ERROR
+    FETCH_CURRENT_STRAIN_ERROR,
+    ADD_STRAIN_TO_CABINET_REQUEST,
+    ADD_STRAIN_TO_CABINET_SUCCESS,
+    ADD_STRAIN_TO_CABINET_ERROR
 } from '../actions/strain-data';
 
 const initialState = {
@@ -61,6 +64,21 @@ export default function reducer(state = initialState, action) {
                 currentStrain: action.data
             });
         case FETCH_CURRENT_STRAIN_ERROR:
+            return Object.assign({}, state, {
+                loading: false,
+                error: action.error
+            });
+        case ADD_STRAIN_TO_CABINET_REQUEST:
+            return Object.assign({}, state, {
+                loading: true,
+                error: null
+            });
+        case ADD_STRAIN_TO_CABINET_SUCCESS:
+            return Object.assign({}, state, {
+                loading: false,
+                error: null
+            })
+        case ADD_STRAIN_TO_CABINET_ERROR:
             return Object.assign({}, state, {
                 loading: false,
                 error: action.error

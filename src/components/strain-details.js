@@ -54,7 +54,7 @@ export class StrainDetails extends React.Component {
 const mapStateToProps = (state) => {
     return {
         strain: state.strainData.currentStrain,
-        userStrains: state.strainData.userStrains,
+        //userStrains: state.strainData.userStrains,
         currentUser: state.auth.currentUser.userName
     };
 };
