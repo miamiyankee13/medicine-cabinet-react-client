@@ -20,7 +20,7 @@ export class DashboardPage extends React.Component {
                 <p>Welcome, {this.props.userName}!</p>
                 <Switch>
                     <Route exact path="/dashboard/cabinet" component={CabinetPage}/>
-                    <Route exact path="/dashboard/cabinet/:id" component={StrainDetailsPage} />
+                    <Route exact path="/dashboard/cabinet/:id" component={StrainDetailsPage}/>
                     <Route exact path="/dashboard/create" component={CreateStrainPage}/>
                     <Route exact path="/dashboard/edit" component={EditStrainPage}/>
                 </Switch>
