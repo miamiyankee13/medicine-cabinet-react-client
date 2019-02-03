@@ -1,20 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
-import LoginForm from './login-form';
+import { Redirect } from 'react-router-dom';
 
-export function LandingPage(props) {
+export class LandingPage extends React.Component {
     // If we are logged in redirect straight to the user's dashboard
-    if (props.loggedIn) {
-        return <Redirect to="/dashboard" />;
+    constructor(props) {
+        super(props);
+
+        this.goToLogin = this.goToLogin.bind(this);
     }
 
-    return (
-        <div>
-            <LoginForm />
-            <Link to="/register">Register</Link>
-        </div>
+    goToLogin(event) {
+        event.preventDefault();
+        this.props.history.push(`/login`);
+    }
+
+    render() {
+        if (this.props.loggedIn) {
+            return <Redirect to="/dashboard" />;
+        }
+
+        return (
+            <div className="home">
+                <p>
+                    Medicine Cabinet offers a simple, unique way to journal about & 
+                    keep track of medicinal cannabis strains.
+                </p>
+                <p>
+                    What makes Medicine Cabinet special is the 
+                    community aspect. The more each user shares the various experiences they have had with 
+                    specific strains, the more information will be available to medical patients all over 
+                    the world!
+                </p>
+                <img 
+                    src="https://i.postimg.cc/mkSXbWqC/landing-page-img-1.jpg" 
+                    alt="Green & Pink Cannabis Plant" 
+                    height="225" width="300" 
+                    class="landing-image" 
+                />
+                <button onClick={this.goToLogin}>Go to Login</button>
+            </div>
     );
+    }
 }
 
 const mapStateToProps = state => ({

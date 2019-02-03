@@ -1,22 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import RegistrationForm from './registration-form';
 
-export function RegistrationPage(props) {
-    // If we are logged in (which happens automatically when registration
-    // is successful) redirect to the user's dashboard
-    if (props.loggedIn) {
-        return <Redirect to="/dashboard" />;
+export class RegistrationPage extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.goBackToLogin = this.goBackToLogin.bind(this);
     }
-    return (
-        <div className="home">
-            <h2>Register</h2>
-            <RegistrationForm />
-            <Link to="/">Login</Link>
-        </div>
-    );
+
+    goBackToLogin(event) {
+        event.preventDefault();
+        this.props.history.push(`/login`);
+    }
+    
+    render() {
+        // If we are logged in (which happens automatically when registration
+        // is successful) redirect to the user's dashboard
+        if (this.props.loggedIn) {
+            return <Redirect to="/dashboard" />;
+        }
+        return (
+            <div className="register">
+                <RegistrationForm />
+                <button onClick={this.goBackToLogin}>Back to Login</button>
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = state => ({
