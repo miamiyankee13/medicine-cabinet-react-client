@@ -43,11 +43,7 @@ export class App extends React.Component {
     render() {
         return (
             <div className="flex-container">
-                <div className="flex-top">
-                    <header>
-                        <Header />
-                    </header>
-                </div>
+                <Header />
                 <div className="flex-bottom">
                     <main className="flex-main">
                         <Switch>

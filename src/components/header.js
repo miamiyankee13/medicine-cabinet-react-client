@@ -7,7 +7,7 @@ export class Header extends React.Component {
         let navigation;
         if (this.props.loggedIn) {
             navigation = (
-                <nav>
+                <nav className="flex-nav">
                     <Nav />
                 </nav>
             );
@@ -16,10 +16,10 @@ export class Header extends React.Component {
         }
 
         return (
-            <div>
+            <header className="flex-top">
                 <h1>Medicine Cabinet</h1>
                 {navigation}
-            </div>
+            </header>
         );
     }
 }

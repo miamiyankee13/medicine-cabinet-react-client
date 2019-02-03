@@ -16,7 +16,7 @@ export class DashboardPage extends React.Component {
     
     render() {
         return (
-            <div>
+            <div className="flex-dashboard">
                 <p>Welcome, {this.props.userName}!</p>
                 <Switch>
                     <Route exact path="/dashboard/cabinet" component={CabinetPage}/>
