@@ -76,7 +76,7 @@ export class StrainDetailsPage extends React.Component {
         });
         
         return (
-            <div className="flex-single-strain">
+            <section roll="region" className="flex-single-strain" aria-live="polite">
                 <h2>{this.props.strain.name}</h2>
                 <br />
                 {
@@ -109,7 +109,7 @@ export class StrainDetailsPage extends React.Component {
                     </textarea>
                     <button onClick={this.addComment}>Add Comment</button>
                 </div>
-            </div>
+            </section>
         )
     }
 }

@@ -17,7 +17,7 @@ export class Header extends React.Component {
         }
 
         return (
-            <header className="flex-top">
+            <header roll="banner" className="flex-top">
                 <h1>Medicine Cabinet</h1>
                 {navigation}
             </header>

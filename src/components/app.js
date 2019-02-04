@@ -46,12 +46,12 @@ export class App extends React.Component {
 
     render() {
         return (
-            <div className="flex-container">
+            <div className="flex-container" aria-live="polite">
                 <Header />
                 <br/>
                 <div className="flex-bottom">
                 <br />
-                    <main className="flex-main">
+                    <main role="main" className="flex-main">
                         <Switch>
                             <Route exact path="/" component={LandingPage} />
                             <Route path="/login" component={LoginPage} />
@@ -63,7 +63,7 @@ export class App extends React.Component {
                             <Route component={NotFound} />
                         </Switch>
                     </main>
-                    <footer className="flex-footer">
+                    <footer role="contentinfo" className="flex-footer">
                         <br />
                         <p>FOR USE BY ADULTS ONLY - AGES 21 & OLDER</p>
                         <br />

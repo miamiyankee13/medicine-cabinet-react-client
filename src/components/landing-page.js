@@ -21,7 +21,7 @@ export class LandingPage extends React.Component {
         }
 
         return (
-            <div className="home">
+            <section roll="region" className="home" aria-live="polite">
                 <p>
                     Medicine Cabinet offers a simple, unique way to journal about & 
                     keep track of medicinal cannabis strains.
@@ -40,7 +40,7 @@ export class LandingPage extends React.Component {
                     className="landing-image" 
                 />
                 <button onClick={this.goToLogin}>Go to Login</button>
-            </div>
+            </section>
     );
     }
 }

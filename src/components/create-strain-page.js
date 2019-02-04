@@ -14,11 +14,11 @@ export class CreateStrainPage extends React.Component {
         }
 
         return (
-            <div>
+            <section roll="region" aria-live="polite">
                 <h2>Create a Strain</h2>
                 {errorMessage}
                 <CreateStrainForm />
-            </div>
+            </section>
         );
     }
 }

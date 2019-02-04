@@ -21,10 +21,10 @@ export class RegistrationPage extends React.Component {
             return <Redirect to="/cabinet" />;
         }
         return (
-            <div className="register">
+            <section roll="region" className="register" aria-live="polite">
                 <RegistrationForm />
                 <button onClick={this.goBackToLogin}>Back to Login</button>
-            </div>
+            </section>
         );
     }
 }

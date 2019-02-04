@@ -49,14 +49,14 @@ export class CabinetPage extends React.Component {
         });
 
         return (
-            <div>
+            <section roll="region" aria-live="polite">
                 <h3>Strains in Cabinet: {cabinetStrains.length}</h3>
                 <br />
                 <StrainDropdown />
                 <div className="flex-cabinet">
                     {cabinetStrains}
                 </div>
-            </div>
+            </section>
         );
     }
 }

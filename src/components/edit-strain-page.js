@@ -14,11 +14,11 @@ export class EditStrainPage extends React.Component {
         }
 
         return (
-            <div>
+            <section roll="region" aria-live="polite">
                 <h2>Edit a Strain</h2>
                 {errorMessage}
                 <EditStrainForm />
-            </div>
+            </section>
         );
     }
 }

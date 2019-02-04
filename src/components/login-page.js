@@ -21,10 +21,10 @@ export class LoginPage extends React.Component {
         }
 
         return (
-            <div className="login">
+            <section roll="region" className="login" >
                 <LoginForm />
                 <button onClick={this.goToRegistration}>Register</button>
-            </div>
+            </section>
     );
     }
 }
