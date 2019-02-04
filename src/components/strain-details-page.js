@@ -96,6 +96,7 @@ export class StrainDetailsPage extends React.Component {
                 <div>
                     <h4 className="detail-heading">Community Comments</h4>
                     {comments}
+                    <br />
                     <label htmlFor="add-comment">Add a comment</label>
                     <textarea 
                     id="add-comment" 

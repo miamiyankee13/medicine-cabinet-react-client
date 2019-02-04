@@ -27,9 +27,9 @@ export class Nav extends React.Component {
         return (
             <ul className="flex-nav">
                 <li className="nav-item"><Link to="/" onClick={this.logOut}>Log Out</Link></li>
-                <li className="nav-item"><Link to="/dashboard/cabinet" onClick={this.updateStrains}>My Cabinet</Link></li>
-                <li className="nav-item"><Link to="/dashboard/create">Create Strain</Link></li>
-                <li className="nav-item"><Link to="/dashboard/edit" onClick={this.updateStrains}>Edit Strain</Link></li>
+                <li className="nav-item"><Link to="/cabinet" onClick={this.updateStrains}>My Cabinet</Link></li>
+                <li className="nav-item"><Link to="/create">Create Strain</Link></li>
+                <li className="nav-item"><Link to="/edit" onClick={this.updateStrains}>Edit Strain</Link></li>
             </ul>
         )
     }

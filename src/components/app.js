@@ -2,12 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import LandingPage from './landing-page';
-import DashboardPage from './dashboard-page';
-import Header from './header';
-import RegistrationPage from './registration-page';
-import NotFound from './not-found';
-import { refreshAuthToken } from '../actions/auth';
 import LoginPage from './login-page';
+import RegistrationPage from './registration-page';
+import CabinetPage from './cabinet-page';
+import CreateStrainPage from './create-strain-page';
+import EditStrainPage from './edit-strain-page';
+import StrainDetailsPage from './strain-details-page';
+import NotFound from './not-found';
+import Header from './header';
+import { refreshAuthToken } from '../actions/auth';
+
 import './app.css';
 
 export class App extends React.Component {
@@ -50,9 +54,12 @@ export class App extends React.Component {
                     <main className="flex-main">
                         <Switch>
                             <Route exact path="/" component={LandingPage} />
-                            <Route path="/dashboard/:section" component={DashboardPage} />
                             <Route path="/login" component={LoginPage} />
                             <Route path="/register" component={RegistrationPage} />
+                            <Route exact path="/cabinet" component={CabinetPage} />
+                            <Route path="/cabinet/:id" component={StrainDetailsPage}/>
+                            <Route path="/create" component={CreateStrainPage}/>
+                            <Route path="/edit" component={EditStrainPage}/>
                             <Route component={NotFound} />
                         </Switch>
                     </main>

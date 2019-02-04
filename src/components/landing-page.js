@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import './landing-page.css';
 
 export class LandingPage extends React.Component {
-    // If we are logged in redirect straight to the user's dashboard
     constructor(props) {
         super(props);
 
@@ -18,7 +17,7 @@ export class LandingPage extends React.Component {
 
     render() {
         if (this.props.loggedIn) {
-            return <Redirect to="/dashboard/cabinet" />;
+            return <Redirect to="/cabinet" />;
         }
 
         return (

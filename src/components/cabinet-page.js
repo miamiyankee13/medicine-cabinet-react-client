@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import StrainDropdown from './strain-dropdown';
-import { removeStrainFromCabinet, fetchUserStrains } from '../actions/strain-data'
+import { removeStrainFromCabinet, fetchUserStrains, fetchStrains } from '../actions/strain-data'
 import './cabinet-page.css';
 
 export class CabinetPage extends React.Component {
@@ -12,12 +12,17 @@ export class CabinetPage extends React.Component {
         this.viewDetails = this.viewDetails.bind(this);
         this.removeStrain = this.removeStrain.bind(this);
     }
+
+    componentDidMount() {
+        this.props.dispatch(fetchStrains());
+        this.props.dispatch(fetchUserStrains());
+    }
     
     viewDetails(event) {
         event.preventDefault();
         const index = event.target.getAttribute('data-index');
         const strain = this.props.userStrains[index];
-        this.props.history.push(`/dashboard/cabinet/${strain._id}`);
+        this.props.history.push(`/cabinet/${strain._id}`);
     }
 
     removeStrain(event) {
