@@ -49,7 +49,7 @@ export class CabinetPage extends React.Component {
         });
 
         return (
-            <section roll="region" aria-live="polite">
+            <section role="region" aria-live="polite">
                 <h3>Strains in Cabinet: {cabinetStrains.length}</h3>
                 <br />
                 <StrainDropdown />

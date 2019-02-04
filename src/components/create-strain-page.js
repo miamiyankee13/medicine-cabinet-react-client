@@ -14,7 +14,7 @@ export class CreateStrainPage extends React.Component {
         }
 
         return (
-            <section roll="region" aria-live="polite">
+            <section role="region" aria-live="polite">
                 <h2>Create a Strain</h2>
                 {errorMessage}
                 <CreateStrainForm />
