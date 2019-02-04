@@ -4,4 +4,60 @@
     box-sizing: border-box;
     font-family: Helvetica, Arial, sans-serif;
   }
-  
+
+html {
+    background: url("https://i.postimg.cc/T3nhnbQg/cannabis-compressor.jpg") no-repeat center center fixed;
+    background-size: cover;
+    text-shadow: 1px 1px 2px whitesmoke;
+}
+
+header h1 {
+    margin-top: 25px;
+    color: forestgreen;
+    font-family: 'Lobster', cursive;
+}
+
+input, textarea, label, select, button {
+    display: block;
+    font-size: 16px;
+}
+
+input, select, button, textarea {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+  button {
+    margin-top: 10px;
+    padding: 8px;
+    border: 2px solid black;
+    border-radius: 10px;
+    border-color: forestgreen;
+    cursor: pointer;
+    color: whitesmoke;
+    background-color: forestgreen;
+    width: 125px;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+label {
+    margin: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+input {
+    color: black;
+}
+
+textarea {
+    max-width: 300px;
+    color: black;
+}
+
+small {
+    font-weight: bold;
+}

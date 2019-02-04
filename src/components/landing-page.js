@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import './landing-page.css';
 
 export class LandingPage extends React.Component {
     // If we are logged in redirect straight to the user's dashboard
@@ -17,7 +18,7 @@ export class LandingPage extends React.Component {
 
     render() {
         if (this.props.loggedIn) {
-            return <Redirect to="/dashboard" />;
+            return <Redirect to="/dashboard/cabinet" />;
         }
 
         return (
@@ -26,6 +27,7 @@ export class LandingPage extends React.Component {
                     Medicine Cabinet offers a simple, unique way to journal about & 
                     keep track of medicinal cannabis strains.
                 </p>
+                <br />
                 <p>
                     What makes Medicine Cabinet special is the 
                     community aspect. The more each user shares the various experiences they have had with 
@@ -36,7 +38,7 @@ export class LandingPage extends React.Component {
                     src="https://i.postimg.cc/mkSXbWqC/landing-page-img-1.jpg" 
                     alt="Green & Pink Cannabis Plant" 
                     height="225" width="300" 
-                    class="landing-image" 
+                    className="landing-image" 
                 />
                 <button onClick={this.goToLogin}>Go to Login</button>
             </div>

@@ -1,15 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
-
 import LandingPage from './landing-page';
 import DashboardPage from './dashboard-page';
 import Header from './header';
 import RegistrationPage from './registration-page';
 import NotFound from './not-found';
-
 import { refreshAuthToken } from '../actions/auth';
 import LoginPage from './login-page';
+import './app.css';
 
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
@@ -45,18 +44,22 @@ export class App extends React.Component {
         return (
             <div className="flex-container">
                 <Header />
+                <br/>
                 <div className="flex-bottom">
+                <br />
                     <main className="flex-main">
                         <Switch>
                             <Route exact path="/" component={LandingPage} />
-                            <Route path="/dashboard/:section?" component={DashboardPage} />
+                            <Route path="/dashboard/:section" component={DashboardPage} />
                             <Route path="/login" component={LoginPage} />
                             <Route path="/register" component={RegistrationPage} />
                             <Route component={NotFound} />
                         </Switch>
                     </main>
                     <footer className="flex-footer">
+                        <br />
                         <p>FOR USE BY ADULTS ONLY - AGES 21 & OLDER</p>
+                        <br />
                         <p><small>Copyright &copy; 2019 Anthony D'Amico</small></p>
                     </footer>
                 </div>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import StrainDropdown from './strain-dropdown';
 import { removeStrainFromCabinet, fetchUserStrains } from '../actions/strain-data'
+import './cabinet-page.css';
 
 export class CabinetPage extends React.Component {
     constructor(props) {
@@ -44,7 +45,8 @@ export class CabinetPage extends React.Component {
 
         return (
             <div>
-                <p>Strains in Cabinet: {cabinetStrains.length}</p>
+                <h3>Strains in Cabinet: {cabinetStrains.length}</h3>
+                <br />
                 <StrainDropdown />
                 <div className="flex-cabinet">
                     {cabinetStrains}

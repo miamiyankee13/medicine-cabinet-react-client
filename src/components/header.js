@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Nav from './nav'
+import Nav from './nav';
+import './header.css';
 
 export class Header extends React.Component {
     render() {
         let navigation;
         if (this.props.loggedIn) {
             navigation = (
-                <nav className="flex-nav">
+                <nav>
                     <Nav />
                 </nav>
             );

@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-import { fetchCurrentStrain, addCommentToStrain, removeCommentFromStrain } from '../actions/strain-data'
+import { fetchCurrentStrain, addCommentToStrain, removeCommentFromStrain } from '../actions/strain-data';
+import './strain-details-page.css';
 
 export class StrainDetailsPage extends React.Component {    
     constructor(props) {
@@ -65,7 +66,8 @@ export class StrainDetailsPage extends React.Component {
 
             return (
                 <div key={`comment-${index}`}>
-                    <p><em>{comment.content}</em></p>
+                    <br />
+                    <p className="comment-content"><em>{comment.content}</em></p>
                     <p><small>Posted by {comment.author}</small></p>
                     {removeButton}
                 </div>
@@ -76,13 +78,23 @@ export class StrainDetailsPage extends React.Component {
         return (
             <div className="flex-single-strain">
                 <h2>{this.props.strain.name}</h2>
-                <h3>{this.props.strain.type}</h3>
-                <h4>Flavor</h4>
+                <br />
+                {
+                    (this.props.strain.type === 'Sativa') ? <h3 className="sativa">Sativa</h3> :
+                    (this.props.strain.type === 'Indica') ? <h3 className="indica">Indica</h3> :
+                    <h3 className="hybrid">Hybrid</h3>
+                }
+                <br />
+                <h4 className="detail-heading">Flavor</h4>
+                <br/>
                 <p>{this.props.strain.flavor}</p>
-                <h4>Description</h4>
+                <br />
+                <h4 className="detail-heading">Description</h4>
+                <br />
                 <p>{this.props.strain.description}</p>
+                <br />
                 <div>
-                    <h4>Community Comments</h4>
+                    <h4 className="detail-heading">Community Comments</h4>
                     {comments}
                     <label htmlFor="add-comment">Add a comment</label>
                     <textarea 

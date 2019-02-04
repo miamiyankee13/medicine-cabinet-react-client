@@ -71,13 +71,12 @@ export class CreateStrainForm extends React.Component {
                     required/>
            
                 <label htmlFor="type">Type</label>
-                <input 
-                    type="text" 
-                    id="type" 
-                    name="type" 
-                    value={this.state.typeValue}
-                    onChange={this.handleTypeChange}
-                    required/>
+                <select id="type" name="type" onChange={this.handleTypeChange} required>
+                    <option value="">--Select a Type--</option>
+                    <option value="Sativa">Sativa</option>
+                    <option value="Indica">Indica</option>
+                    <option value="Hybrid">Hybrid</option>
+                </select>
                 
                 <label htmlFor="description">Description</label>
                 <textarea 

@@ -20,7 +20,7 @@ export class RegistrationPage extends React.Component {
         // If we are logged in (which happens automatically when registration
         // is successful) redirect to the user's dashboard
         if (this.props.loggedIn) {
-            return <Redirect to="/dashboard" />;
+            return <Redirect to="/dashboard/cabinet" />;
         }
         return (
             <div className="register">
