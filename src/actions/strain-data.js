@@ -107,7 +107,7 @@ export const removeCommentFromStrainRequest = () => ({
 
 export const REMOVE_COMMENT_FROM_STRAIN_SUCCESS = 'REMOVE_COMMENT_FROM_STRAIN_SUCCESS';
 export const removeCommentFromStrainSuccess = () => ({
-    type: REMOVE_STRAIN_FROM_CABINET_SUCCESS
+    type: REMOVE_COMMENT_FROM_STRAIN_SUCCESS
 });
 
 export const REMOVE_COMMENT_FROM_STRAIN_ERROR = 'REMOVE_COMMENT_FROM_STRAIN_ERROR';
