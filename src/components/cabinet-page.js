@@ -34,10 +34,6 @@ export class CabinetPage extends React.Component {
     }
 
     render() {
-        if (!this.props.userStrains) {
-            return null;
-        }
-
         const cabinetStrains = this.props.userStrains.map((strain, index) => {
             return (
                 <div key={`strain-${index}`} className="cabinet-strain">
@@ -49,7 +45,7 @@ export class CabinetPage extends React.Component {
         });
 
         return (
-            <section role="region" aria-live="polite">
+            <section aria-live="polite">
                 <h3>Strains in Cabinet: {cabinetStrains.length}</h3>
                 <br />
                 <StrainDropdown />

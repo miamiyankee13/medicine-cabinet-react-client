@@ -21,7 +21,7 @@ export class LoginPage extends React.Component {
         }
 
         return (
-            <section role="region" className="login" >
+            <section className="login" >
                 <LoginForm />
                 <button onClick={this.goToRegistration}>Register</button>
             </section>

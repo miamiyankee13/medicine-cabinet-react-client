@@ -76,7 +76,7 @@ export class StrainDetailsPage extends React.Component {
         });
         
         return (
-            <section role="region" className="flex-single-strain" aria-live="polite">
+            <section className="flex-single-strain" aria-live="polite">
                 <h2>{this.props.strain.name}</h2>
                 <br />
                 {

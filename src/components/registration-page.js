@@ -21,7 +21,7 @@ export class RegistrationPage extends React.Component {
             return <Redirect to="/cabinet" />;
         }
         return (
-            <section role="region" className="register" aria-live="polite">
+            <section className="register" aria-live="polite">
                 <RegistrationForm />
                 <button onClick={this.goBackToLogin}>Back to Login</button>
             </section>

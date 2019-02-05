@@ -21,7 +21,7 @@ export class LandingPage extends React.Component {
         }
 
         return (
-            <section role="region" className="home" aria-live="polite">
+            <section className="home" aria-live="polite">
                 <p>
                     Medicine Cabinet offers a simple, unique way to journal about & 
                     keep track of medicinal cannabis strains.
