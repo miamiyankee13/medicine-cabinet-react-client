@@ -148,6 +148,11 @@ export const editStrainError = error => ({
     error
 });
 
+export const RESET_CURRENT_STRAIN = 'RESET_CURRENT_STRAIN';
+export const resetCurrentStrain = () => ({
+    type: RESET_CURRENT_STRAIN
+});
+
 
 export const fetchUserStrains = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;

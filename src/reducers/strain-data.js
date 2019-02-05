@@ -22,7 +22,8 @@ import {
     CREATE_STRAIN_ERROR,
     EDIT_STRAIN_REQUEST,
     EDIT_STRAIN_SUCCESS,
-    EDIT_STRAIN_ERROR
+    EDIT_STRAIN_ERROR,
+    RESET_CURRENT_STRAIN
 } from '../actions/strain-data';
 
 const initialState = {
@@ -149,6 +150,10 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {
                 loading: false,
                 error: action.error.message
+            });
+        case RESET_CURRENT_STRAIN:
+            return Object.assign({}, state, {
+                currentStrain: null
             });
 
         default:

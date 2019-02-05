@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-import { fetchCurrentStrain, addCommentToStrain, removeCommentFromStrain } from '../actions/strain-data';
+import { fetchCurrentStrain, addCommentToStrain, removeCommentFromStrain, resetCurrentStrain } from '../actions/strain-data';
 import './strain-details-page.css';
 
 export class StrainDetailsPage extends React.Component {    
@@ -21,6 +21,7 @@ export class StrainDetailsPage extends React.Component {
     }
 
     componentWillUnmount() {
+        this.props.dispatch(resetCurrentStrain());
         console.log('Removing current strain');
     }
 

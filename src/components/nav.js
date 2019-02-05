@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { clearAuth } from '../actions/auth';
 import { clearAuthToken } from '../local-storage';
-import { fetchStrains } from '../actions/strain-data'
 import './nav.css';
 
 export class Nav extends React.Component {
@@ -11,7 +10,6 @@ export class Nav extends React.Component {
         super(props);
 
         this.logOut = this.logOut.bind(this);
-        this.updateStrains = this.updateStrains.bind(this);
     }
     
     logOut() {
