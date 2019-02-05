@@ -2,8 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import CreateStrainForm from './create-strain-form';
+import { fetchStrains } from '../actions/strain-data';
 
 export class CreateStrainPage extends React.Component {
+    componentWillUnmount() {
+        this.props.dispatch(fetchStrains());
+    }
+    
     render() {
         let errorMessage;
 

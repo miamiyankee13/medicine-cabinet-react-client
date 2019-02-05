@@ -20,6 +20,10 @@ export class StrainDetailsPage extends React.Component {
         this.props.dispatch(fetchCurrentStrain(this.props.match.params.id))
     }
 
+    componentWillUnmount() {
+        console.log('Removing current strain');
+    }
+
     handleChange(event) {
         this.setState({
             value: event.target.value
@@ -74,7 +78,7 @@ export class StrainDetailsPage extends React.Component {
             );
 
         });
-        
+
         return (
             <section className="flex-single-strain" aria-live="polite">
                 <h2>{this.props.strain.name}</h2>
