@@ -19,10 +19,6 @@ export class Nav extends React.Component {
         clearAuthToken();
     }
 
-    updateStrains() {
-        this.props.dispatch(fetchStrains());
-    }
-
     render() {
         return (
             <ul className="flex-nav" aria-live="polite">
