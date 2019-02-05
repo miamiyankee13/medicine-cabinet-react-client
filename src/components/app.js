@@ -57,7 +57,7 @@ export class App extends React.Component {
                             <Route path="/login" component={LoginPage} />
                             <Route path="/register" component={RegistrationPage} />
                             <Route exact path="/cabinet" component={CabinetPage} />
-                            <Route path="/cabinet/:id" component={StrainDetailsPage}/>
+                            <Route exact path="/cabinet/:id([0-9a-fA-F]{24})" component={StrainDetailsPage}/>
                             <Route path="/create" component={CreateStrainPage}/>
                             <Route path="/edit" component={EditStrainPage}/>
                             <Route component={NotFound} />

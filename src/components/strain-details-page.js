@@ -4,7 +4,7 @@ import requiresLogin from './requires-login';
 import { fetchCurrentStrain, addCommentToStrain, removeCommentFromStrain, resetCurrentStrain } from '../actions/strain-data';
 import './strain-details-page.css';
 
-export class StrainDetailsPage extends React.Component {    
+export class StrainDetailsPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -15,7 +15,7 @@ export class StrainDetailsPage extends React.Component {
         this.addComment = this.addComment.bind(this);
         this.removeComment = this.removeComment.bind(this);
     }
-    
+
     componentDidMount() {
         this.props.dispatch(fetchCurrentStrain(this.props.match.params.id))
     }
@@ -54,8 +54,20 @@ export class StrainDetailsPage extends React.Component {
         this.props.dispatch(removeCommentFromStrain(strain._id, comment._id))
             .then(() => this.props.dispatch(fetchCurrentStrain(strain._id)));
     }
-    
+
     render() {
+
+        if (this.props.error) {
+            return (<p>
+                {this.props.error}
+                <button
+                    onClick={e => this.props.dispatch(fetchCurrentStrain(this.props.match.params.id))}>
+                    Retry
+                    </button>
+            </p>);
+        }
+
+
         if (!this.props.strain) {
             return null;
         }
@@ -85,12 +97,12 @@ export class StrainDetailsPage extends React.Component {
                 <br />
                 {
                     (this.props.strain.type === 'Sativa') ? <h3 className="sativa">Sativa</h3> :
-                    (this.props.strain.type === 'Indica') ? <h3 className="indica">Indica</h3> :
-                    <h3 className="hybrid">Hybrid</h3>
+                        (this.props.strain.type === 'Indica') ? <h3 className="indica">Indica</h3> :
+                            <h3 className="hybrid">Hybrid</h3>
                 }
                 <br />
                 <h4 className="detail-heading">Flavor</h4>
-                <br/>
+                <br />
                 <p>{this.props.strain.flavor}</p>
                 <br />
                 <h4 className="detail-heading">Description</h4>
@@ -102,13 +114,13 @@ export class StrainDetailsPage extends React.Component {
                     {comments}
                     <br />
                     <label htmlFor="add-comment">Add a comment</label>
-                    <textarea 
-                    id="add-comment" 
-                    name="add-comment" 
-                    rows="4" 
-                    cols="30" 
-                    value={this.state.value}
-                    onChange={this.handleChange}
+                    <textarea
+                        id="add-comment"
+                        name="add-comment"
+                        rows="4"
+                        cols="30"
+                        value={this.state.value}
+                        onChange={this.handleChange}
                     >
                     </textarea>
                     <button onClick={this.addComment}>Add Comment</button>
@@ -119,10 +131,13 @@ export class StrainDetailsPage extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
+    const retVal = {
+        error: state.strainData.error,
         strain: state.strainData.currentStrain,
         currentUser: state.auth.currentUser.userName
     };
+    console.log('props', retVal)
+    return retVal
 };
 
 export default requiresLogin()(connect(mapStateToProps)(StrainDetailsPage));
