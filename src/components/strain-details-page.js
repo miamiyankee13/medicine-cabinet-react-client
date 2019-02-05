@@ -58,15 +58,8 @@ export class StrainDetailsPage extends React.Component {
     render() {
 
         if (this.props.error) {
-            return (<p>
-                {this.props.error}
-                <button
-                    onClick={e => this.props.dispatch(fetchCurrentStrain(this.props.match.params.id))}>
-                    Retry
-                    </button>
-            </p>);
+            return <p>{this.props.error}</p>;
         }
-
 
         if (!this.props.strain) {
             return null;
@@ -131,13 +124,11 @@ export class StrainDetailsPage extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    const retVal = {
+    return {
         error: state.strainData.error,
         strain: state.strainData.currentStrain,
         currentUser: state.auth.currentUser.userName
     };
-    console.log('props', retVal)
-    return retVal
 };
 
 export default requiresLogin()(connect(mapStateToProps)(StrainDetailsPage));
