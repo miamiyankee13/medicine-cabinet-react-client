@@ -17,6 +17,9 @@ import {
     ADD_COMMENT_TO_STRAIN_REQUEST,
     ADD_COMMENT_TO_STRAIN_SUCCESS,
     ADD_COMMENT_TO_STRAIN_ERROR,
+    REMOVE_COMMENT_FROM_STRAIN_REQUEST,
+    REMOVE_COMMENT_FROM_STRAIN_SUCCESS,
+    REMOVE_COMMENT_FROM_STRAIN_ERROR,
     CREATE_STRAIN_REQUEST,
     CREATE_STRAIN_SUCCESS,
     CREATE_STRAIN_ERROR,
@@ -119,6 +122,20 @@ export default function reducer(state = initialState, action) {
                 loading: false
             });
         case ADD_COMMENT_TO_STRAIN_ERROR:
+            return Object.assign({}, state, {
+                loading: false,
+                error: action.error.message
+            });
+        case REMOVE_COMMENT_FROM_STRAIN_REQUEST:
+            return Object.assign({}, state, {
+                loading: true,
+                error: null
+            })
+        case REMOVE_COMMENT_FROM_STRAIN_SUCCESS:
+            return Object.assign({}, state, {
+                loading: false
+            });
+        case REMOVE_COMMENT_FROM_STRAIN_ERROR:
             return Object.assign({}, state, {
                 loading: false,
                 error: action.error.message
