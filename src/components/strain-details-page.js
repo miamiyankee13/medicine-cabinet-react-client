@@ -22,7 +22,6 @@ export class StrainDetailsPage extends React.Component {
 
     componentWillUnmount() {
         this.props.dispatch(resetCurrentStrain());
-        console.log('Removing current strain');
     }
 
     handleChange(event) {
