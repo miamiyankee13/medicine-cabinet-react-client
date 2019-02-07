@@ -153,6 +153,23 @@ export const resetCurrentStrain = () => ({
     type: RESET_CURRENT_STRAIN
 });
 
+export const FILTER_USER_STRAINS_REQUEST = 'FILTER_USER_STRAINS_REQUEST';
+export const filterUserStrainsRequest = () => ({
+    type: FILTER_USER_STRAINS_REQUEST
+});
+
+export const FILTER_USER_STRAINS_SUCCESS = 'FILTER_USER_STRAINS_SUCCESS';
+export const filterUserStrainsSuccess = data => ({
+    type: FILTER_USER_STRAINS_SUCCESS,
+    data
+});
+
+export const FILTER_USER_STRAINS_ERROR = 'FILTER_USER_STRAINS_ERROR';
+export const filterUserStrainsError = error => ({
+    type: FILTER_USER_STRAINS_ERROR,
+    error
+});
+
 
 export const fetchUserStrains = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
@@ -317,4 +334,21 @@ export const editStrain = (id, name, type, flavor, description) => (dispatch, ge
         .catch(err => {
             dispatch(editStrainError(err))
         })
+}
+
+export const filterUserStrains = (type) => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    dispatch(filterUserStrainsRequest());
+    return fetch(`${API_BASE_URL}/users/strains/${type}`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then(res => dispatch(filterUserStrainsSuccess(res)))
+        .catch(err => {
+            dispatch(filterUserStrainsError(err));
+        });
 }

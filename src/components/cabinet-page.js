@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import StrainDropdown from './strain-dropdown';
+import StrainFilter from './strain-filter';
 import { removeStrainFromCabinet, fetchUserStrains, fetchStrains } from '../actions/strain-data'
 import './cabinet-page.css';
 
@@ -46,9 +47,13 @@ export class CabinetPage extends React.Component {
 
         return (
             <section aria-live="polite">
+                <div className="flex-forms">
+                <StrainDropdown />
+                <StrainFilter />
+                </div>
+                <br />
                 <h3>Strains in Cabinet: {cabinetStrains.length}</h3>
                 <br />
-                <StrainDropdown />
                 <div className="flex-cabinet">
                     {cabinetStrains}
                 </div>

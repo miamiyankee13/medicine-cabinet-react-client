@@ -4,6 +4,12 @@
     justify-content: space-evenly;
 }
 
+.flex-forms {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
 .cabinet-strain {
     margin: 25px;
     padding: 15px;

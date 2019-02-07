@@ -26,7 +26,10 @@ import {
     EDIT_STRAIN_REQUEST,
     EDIT_STRAIN_SUCCESS,
     EDIT_STRAIN_ERROR,
-    RESET_CURRENT_STRAIN
+    RESET_CURRENT_STRAIN,
+    FILTER_USER_STRAINS_REQUEST,
+    FILTER_USER_STRAINS_SUCCESS,
+    FILTER_USER_STRAINS_ERROR
 } from '../actions/strain-data';
 
 const initialState = {
@@ -172,7 +175,21 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {
                 currentStrain: null
             });
-
+        case FILTER_USER_STRAINS_REQUEST:
+            return Object.assign({}, state, {
+                loading: true,
+                error: null
+            });
+        case FILTER_USER_STRAINS_SUCCESS:
+            return Object.assign({}, state, {
+                loading: false,
+                userStrains: action.data.strains
+            });
+        case FILTER_USER_STRAINS_ERROR:
+            return Object.assign({}, state, {
+                loading: false,
+                error: action.error.message
+            });
         default:
             return state;
     }
