@@ -73,11 +73,17 @@ export class StrainDetailsPage extends React.Component {
                 removeButton = '';
             }
 
+            let date = new Date(comment.created);
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+            let time = date.toLocaleTimeString();
+
             return (
                 <div key={`comment-${index}`}>
                     <br />
                     <p className="comment-content"><em>{comment.content}</em></p>
                     <p><small>Posted by {comment.author}</small></p>
+                    <p><small>{month}/{day} @ {time}</small></p>
                     {removeButton}
                 </div>
             );
