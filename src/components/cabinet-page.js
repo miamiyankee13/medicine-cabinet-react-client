@@ -35,6 +35,19 @@ export class CabinetPage extends React.Component {
     }
 
     render() {
+        //Sort user strains alphabetically
+        this.props.userStrains.sort((a, b) => {
+            const nameA = a.name.toLowerCase();
+            const nameB = b.name.toLowerCase();
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
+            return 0
+        });
+        
         const cabinetStrains = this.props.userStrains.map((strain, index) => {
             return (
                 <div key={`strain-${index}`} className="cabinet-strain">
