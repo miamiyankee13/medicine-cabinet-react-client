@@ -18,7 +18,7 @@ export class CabinetPage extends React.Component {
         this.props.dispatch(fetchStrains());
         this.props.dispatch(fetchUserStrains());
     }
-    
+
     viewDetails(event) {
         event.preventDefault();
         const index = event.target.getAttribute('data-index');
@@ -37,8 +37,8 @@ export class CabinetPage extends React.Component {
     render() {
         //Sort user strains alphabetically
         this.props.userStrains.sort((a, b) => {
-            const nameA = a.name.toLowerCase();
-            const nameB = b.name.toLowerCase();
+            const nameA = ('' + a.name).toLowerCase();
+            const nameB = ('' + b.name).toLowerCase();
             if (nameA < nameB) {
                 return -1;
             }
@@ -47,7 +47,7 @@ export class CabinetPage extends React.Component {
             }
             return 0
         });
-        
+
         const cabinetStrains = this.props.userStrains.map((strain, index) => {
             return (
                 <div key={`strain-${index}`} className="cabinet-strain">
@@ -61,8 +61,8 @@ export class CabinetPage extends React.Component {
         return (
             <section aria-live="polite">
                 <div className="flex-forms">
-                <StrainDropdown />
-                <StrainFilter />
+                    <StrainDropdown />
+                    <StrainFilter />
                 </div>
                 <br />
                 <h3>Strains in Cabinet: {cabinetStrains.length}</h3>
