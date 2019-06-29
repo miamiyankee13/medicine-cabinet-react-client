@@ -8,8 +8,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
     combineReducers({
-        auth: authReducer,
-        strainData: strainDataReducer
+        auth: authReducer
     }),
     composeEnhancers(
         applyMiddleware(thunk)
