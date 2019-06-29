@@ -1,0 +1,37 @@
+.mobileNav {
+    position: fixed;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    background: white;
+    width: 30%;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 300ms ease-out;
+}
+
+.mobileNavItems {
+    width: 90%;
+    height: 100%;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobileNavItems li {
+    margin: 1rem 0;
+}
+
+.mobileNavItems li a {
+    text-decoration: none;
+    color: green;
+    font-size: 1.5rem;
+}
+
+.open {
+    transform: translateX(0) !important;
+}
