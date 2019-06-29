@@ -1,5 +1,5 @@
 import jwtDecode from 'jwt-decode';
-import { API_BASE_URL } from '../config';
+import { API_BASE_URL } from '../../config';
 import { normalizeResponseErrors } from '../utils';
 import { saveAuthToken, clearAuthToken } from './local-storage';
 
