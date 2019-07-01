@@ -8,8 +8,15 @@
     color: whitesmoke;
     background-color: forestgreen;
     width: 125px;
+    font-size: inherit;
 }
 
 .button:hover {
     transform: scale(1.1);
+}
+
+.button:disabled {
+    background-color: #CCC;
+    border: none;
+    cursor: not-allowed;
 }
