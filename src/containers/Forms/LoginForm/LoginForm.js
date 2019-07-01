@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
+import styles from './LoginForm.module.css';
 
 class LoginForm extends Component {
     state = {
@@ -100,12 +101,13 @@ class LoginForm extends Component {
                         changed={(event) => this.handleInputChange(event, formElement.id)}
                     />
                 ))}
-                <Button disabled={!this.state.formIsValid}>Login</Button>
+                <Button disabled={!this.state.formIsValid}>Log In</Button>
             </form>
         );
 
         return (
-            <div>
+            <div className={styles.loginForm}>
+                <h3>Please log in to view your cabinet!</h3>
                 {form}
             </div>
         );

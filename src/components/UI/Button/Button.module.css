@@ -9,6 +9,7 @@
     background-color: forestgreen;
     width: 125px;
     font-size: inherit;
+    outline: none;
 }
 
 .button:hover {
