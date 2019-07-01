@@ -1,0 +1,15 @@
+.button {
+    margin-top: 10px;
+    padding: 8px;
+    border: 2px solid black;
+    border-radius: 10px;
+    border-color: forestgreen;
+    cursor: pointer;
+    color: whitesmoke;
+    background-color: forestgreen;
+    width: 125px;
+}
+
+.button:hover {
+    transform: scale(1.1);
+}
