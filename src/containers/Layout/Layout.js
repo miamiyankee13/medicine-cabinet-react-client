@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Header from '../../components/Header/Header';
 import MobileNav from '../../components/Navigation/MobileNav/MobileNav';
 import Footer from '../../components/Footer/Footer';
+import AddForm from '../Forms/AddForm/AddForm';
 
 class Layout extends Component {
     state = {
@@ -19,6 +20,7 @@ class Layout extends Component {
             <Fragment>
                 <Header toggle={this.handleMobileNavToggle} />
                 <MobileNav open={this.state.showMobileNav} toggle={this.handleMobileNavToggle} />
+                <AddForm />
                 <main>
                     {this.props.children}
                 </main>
