@@ -5,6 +5,22 @@ import Button from '../../../components/UI/Button/Button';
 class EditForm extends Component {
     state = {
         form: {
+            id: {
+                elementType: 'select',
+                elementConfig: {
+                    options: this.props.strains.map(strain => {
+                        return {value: strain.id , display: strain.name}
+                    }),
+                    name: 'id',
+                    label: 'Strain'
+                },
+                value: this.props.strains[0].id,
+                validation: {
+                    required: true
+                },
+                valid: true,
+                touched: false
+            },
             name: {
                 elementType: 'input',
                 elementConfig: {
@@ -108,7 +124,7 @@ class EditForm extends Component {
 
     handleRegistration = event => {
         event.preventDefault();
-        console.log(`${this.state.form.name.value} ${this.state.form.type.value} ${this.state.form.flavor.value} ${this.state.form.description.value}`);
+        console.log(`${this.state.form.id.value} ${this.state.form.name.value} ${this.state.form.type.value} ${this.state.form.flavor.value} ${this.state.form.description.value}`);
     }
 
     render() {
