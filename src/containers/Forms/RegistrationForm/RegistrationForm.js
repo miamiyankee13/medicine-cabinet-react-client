@@ -4,7 +4,7 @@ import Button from '../../../components/UI/Button/Button';
 
 class RegistrationForm extends Component {
     state = {
-        registrationForm: {
+        form: {
             firstName: {
                 elementType: 'input',
                 elementConfig: {
@@ -77,7 +77,8 @@ class RegistrationForm extends Component {
                 value: '',
                 validation: {
                     required: true,
-                    minLength: 10
+                    minLength: 10,
+                    shouldMatch: true
                 },
                 valid: false,
                 touched: false
@@ -96,12 +97,16 @@ class RegistrationForm extends Component {
             isValid = value.length >= rules.minLength && isValid;
         }
 
+        if (rules.shouldMatch) {
+            isValid = value === this.state.form.password.value && isValid;
+        }
+
         return isValid
     }
 
     handleInputChange = (event, inputId) => {
         const updatedForm = {
-            ...this.state.registrationForm
+            ...this.state.form
         }
 
         const updatedFormElement = {
@@ -119,25 +124,22 @@ class RegistrationForm extends Component {
         }
 
         this.setState({
-            registrationForm: updatedForm,
+            form: updatedForm,
             formIsValid
         });
     }
 
     handleRegistration = event => {
         event.preventDefault();
-        if (this.state.registrationForm.password.value !== this.state.registrationForm.passwordCheck.value) {
-            alert('Password fields must match!');
-        }
-        console.log(`${this.state.registrationForm.firstName.value} ${this.state.registrationForm.lastName.value} ${this.state.registrationForm.username.value} ${this.state.registrationForm.password.value}`);
+        console.log(`${this.state.form.firstName.value} ${this.state.form.lastName.value} ${this.state.form.username.value} ${this.state.form.password.value}`);
     }
 
     render() {
         const formElementsArray = [];
-        for (let key in this.state.registrationForm) {
+        for (let key in this.state.form) {
             formElementsArray.push({
                 id: key,
-                config: this.state.registrationForm[key]
+                config: this.state.form[key]
             });
         }
 

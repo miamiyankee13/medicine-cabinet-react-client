@@ -4,7 +4,7 @@ import Button from '../../../components/UI/Button/Button';
 
 class LoginForm extends Component {
     state = {
-        loginForm: {
+        form: {
             username: {
                 elementType: 'input',
                 elementConfig: {
@@ -49,7 +49,7 @@ class LoginForm extends Component {
 
     handleInputChange = (event, inputId) => {
         const updatedForm = {
-            ...this.state.loginForm
+            ...this.state.form
         }
 
         const updatedFormElement = {
@@ -67,22 +67,22 @@ class LoginForm extends Component {
         }
 
         this.setState({
-            loginForm: updatedForm,
+            form: updatedForm,
             formIsValid
         });
     }
 
     handleLogin = event => {
         event.preventDefault();
-        console.log(`${this.state.loginForm.username.value} ${this.state.loginForm.password.value}`);
+        console.log(`${this.state.form.username.value} ${this.state.form.password.value}`);
     }
 
     render() {
         const formElementsArray = [];
-        for (let key in this.state.loginForm) {
+        for (let key in this.state.form) {
             formElementsArray.push({
                 id: key,
-                config: this.state.loginForm[key]
+                config: this.state.form[key]
             });
         }
 
