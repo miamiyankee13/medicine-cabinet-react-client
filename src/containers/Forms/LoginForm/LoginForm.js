@@ -106,7 +106,7 @@ class LoginForm extends Component {
 
         return (
             <div className="info-form">
-                <h3>Please log in to view your cabinet!</h3>
+                <h3>Log in to view your cabinet!</h3>
                 {form}
             </div>
         );
