@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Header from '../../components/Header/Header';
 import MobileNav from '../../components/Navigation/MobileNav/MobileNav';
 import Footer from '../../components/Footer/Footer';
+import styles from './Layout.module.css';
 
 class Layout extends Component {
     state = {
@@ -19,7 +20,7 @@ class Layout extends Component {
             <Fragment>
                 <Header open={this.state.showMobileNav} toggle={this.handleMobileNavToggle} />
                 <MobileNav open={this.state.showMobileNav} toggle={this.handleMobileNavToggle} />
-                <main>
+                <main className={styles.main}>
                     {this.props.children}
                 </main>
                 <Footer />

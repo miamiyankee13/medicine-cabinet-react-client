@@ -18,26 +18,15 @@ body {
 
 #root {
     display: grid;
-    grid-template-rows: 4.375rem auto fit-content(3.125rem);
+    grid-template-rows: 4.125rem auto fit-content(3.125rem);
     grid-template-areas: "header"
                          "main"
                          "footer";
     height: 100%;
 }
 
-main {
-    grid-area: main;
-}
-
-footer {
-    grid-area: footer;
-    text-align: center;
-    color: white;
-    font-weight: bold;
-}
-
 .info-form {
-    margin: 30px auto;
+    margin: 35px auto;
     width: 80%;
     max-width: 500px;
     text-align: center;
