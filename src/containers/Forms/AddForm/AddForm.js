@@ -103,7 +103,7 @@ class AddForm extends Component {
         });
     }
 
-    handleRegistration = event => {
+    handleSubmit = event => {
         event.preventDefault();
         console.log(`${this.state.form.name.value} ${this.state.form.type.value} ${this.state.form.flavor.value} ${this.state.form.description.value}`);
     }
@@ -118,7 +118,7 @@ class AddForm extends Component {
         }
 
         let form = (
-            <form onSubmit={this.handleRegistration}>
+            <form onSubmit={this.handleSubmit}>
                 {formElementsArray.map(formElement => (
                     <Input
                         key={formElement.id}

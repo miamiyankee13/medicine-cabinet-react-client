@@ -129,7 +129,7 @@ class RegistrationForm extends Component {
         });
     }
 
-    handleRegistration = event => {
+    handleSubmit = event => {
         event.preventDefault();
         console.log(`${this.state.form.firstName.value} ${this.state.form.lastName.value} ${this.state.form.username.value} ${this.state.form.password.value}`);
     }
@@ -144,7 +144,7 @@ class RegistrationForm extends Component {
         }
 
         let form = (
-            <form onSubmit={this.handleRegistration}>
+            <form onSubmit={this.handleSubmit}>
                 {formElementsArray.map(formElement => (
                     <Input
                         key={formElement.id}

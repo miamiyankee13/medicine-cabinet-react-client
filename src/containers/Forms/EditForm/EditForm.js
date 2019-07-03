@@ -116,7 +116,7 @@ class EditForm extends Component {
         });
     }
 
-    handleRegistration = event => {
+    handleSubmit = event => {
         event.preventDefault();
         console.log(`${this.state.form.id.value} ${this.state.form.name.value} ${this.state.form.type.value} ${this.state.form.flavor.value} ${this.state.form.description.value}`);
     }
@@ -131,7 +131,7 @@ class EditForm extends Component {
         }
 
         let form = (
-            <form onSubmit={this.handleRegistration}>
+            <form onSubmit={this.handleSubmit}>
                 {formElementsArray.map(formElement => (
                     <Input
                         key={formElement.id}
