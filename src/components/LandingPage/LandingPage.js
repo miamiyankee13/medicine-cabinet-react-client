@@ -8,6 +8,14 @@ class LandingPage extends Component {
     handleRegistration = () => {
         this.props.history.push('/login');
     }
+
+    render() {
+        return (
+            <section>
+                
+            </section>
+        );
+    }
 }
 
 export default LandingPage;
