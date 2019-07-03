@@ -17,7 +17,7 @@ class Layout extends Component {
     render() {
         return (
             <Fragment>
-                <Header toggle={this.handleMobileNavToggle} />
+                <Header open={this.state.showMobileNav} toggle={this.handleMobileNavToggle} />
                 <MobileNav open={this.state.showMobileNav} toggle={this.handleMobileNavToggle} />
                 <main>
                     {this.props.children}

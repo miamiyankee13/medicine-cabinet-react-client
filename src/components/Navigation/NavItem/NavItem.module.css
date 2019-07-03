@@ -1,0 +1,17 @@
+.navItem {
+    margin: 0 1rem;
+}
+
+.navItem a {
+    text-decoration: none;
+    color: black;
+}
+
+.navItem a:hover,
+.navItem a:active {
+    color: forestgreen;
+}
+
+.navItem a.active {
+    color: forestgreen;
+}

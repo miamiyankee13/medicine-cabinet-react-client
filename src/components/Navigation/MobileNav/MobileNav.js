@@ -9,13 +9,13 @@ const MobileNav = props => (
         <Backdrop visible={props.open} clicked={props.toggle} />
         <nav 
             className={props.open ? `${styles.mobileNav} ${styles.open}` : `${styles.mobileNav}`}
-            onClick={props.clicked}
+            onClick={props.toggle}
         >
             <ul className={styles.mobileNavItems}>
-                <NavItem link="/cabinet">My Cabinet</NavItem>
-                <NavItem link="/add">Add Strain</NavItem>
-                <NavItem link="/edit">Edit Strain</NavItem>
-                <NavItem link="/">Log Out</NavItem>
+                <NavItem link="/cabinet"><i className="fas fa-clinic-medical fa-lg"></i></NavItem>
+                <NavItem link="/add"><i className="fas fa-plus-circle fa-lg"></i></NavItem>
+                <NavItem link="/edit"><i className="fas fa-edit fa-lg"></i></NavItem>
+                <NavItem exact link="/"><i className="fas fa-sign-out-alt fa-lg"></i></NavItem>
             </ul>
         </nav>
     </Fragment>
