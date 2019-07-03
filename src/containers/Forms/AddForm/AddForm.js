@@ -32,11 +32,8 @@ class AddForm extends Component {
                     label: 'Type',
                 },
                 value: 'Sativa',
-                validation: {
-                    required: true
-                },
-                valid: true,
-                touched: false
+                validation: {},
+                valid: true
             },
             flavor: {
                 elementType: 'input',

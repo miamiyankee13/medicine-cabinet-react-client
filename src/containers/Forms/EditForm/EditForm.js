@@ -15,11 +15,8 @@ class EditForm extends Component {
                     label: 'Strain'
                 },
                 value: this.props.strains[0].id,
-                validation: {
-                    required: true
-                },
-                valid: true,
-                touched: false
+                validation: {},
+                valid: true
             },
             name: {
                 elementType: 'input',
@@ -48,11 +45,8 @@ class EditForm extends Component {
                     label: 'Type',
                 },
                 value: 'Sativa',
-                validation: {
-                    required: true
-                },
-                valid: true,
-                touched: false
+                validation: {},
+                valid: true
             },
             flavor: {
                 elementType: 'input',
