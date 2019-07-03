@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from '../UI/Button/Button';
+import styles from './LandingPage.module.css';
 
 class LandingPage extends Component {
     handleLogin = () => {
@@ -12,7 +13,7 @@ class LandingPage extends Component {
 
     render() {
         return (
-            <section className="home" aria-live="polite">
+            <section className={styles.home} aria-live="polite">
                 <p>
                     Medicine Cabinet offers a simple, unique way to journal about & 
                     keep track of medicinal cannabis strains.
@@ -27,9 +28,9 @@ class LandingPage extends Component {
                     src="https://i.postimg.cc/mkSXbWqC/landing-page-img-1.jpg" 
                     alt="Green & Pink Cannabis Plant" 
                     height="225" width="300" 
-                    className="landing-image" 
+                    className={styles.landingImage} 
                 />
-                <div className="buttons">
+                <div className={styles.buttons}>
                     <Button clicked={this.handleLogin}>Log In</Button>
                     <Button clicked={this.handleRegistration}>Register</Button>
                 </div>
