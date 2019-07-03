@@ -105,10 +105,10 @@ class LoginForm extends Component {
         );
 
         return (
-            <div className="info-form">
+            <section className="info-form">
                 <h3 className="form-heading">Log in to view your cabinet!</h3>
                 {form}
-            </div>
+            </section>
         );
     }
 }
