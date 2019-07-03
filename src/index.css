@@ -12,7 +12,8 @@ body {
     padding: 0;
     font-family: Helvetica, Arial, sans-serif;
     height: 100%;
-    background-color: rgba(34, 139, 34, 0.3);
+    background: url("https://i.postimg.cc/T3nhnbQg/cannabis-compressor.jpg") no-repeat center center fixed;
+    background-size: cover;
 }
 
 #root {
@@ -31,15 +32,18 @@ main {
 footer {
     grid-area: footer;
     text-align: center;
+    color: white;
+    font-weight: bold;
 }
 
 .info-form {
-    margin: 20px auto;
+    margin: 30px auto;
     width: 80%;
+    max-width: 500px;
     text-align: center;
     box-shadow: 0 2px 3px #CCC;
     border: 1px solid #EEE;
-    padding: 10px;
+    padding: 15px;
     background-color: white;
 }
     
@@ -57,8 +61,3 @@ footer {
     color: forestgreen;
 }
 
-@media (min-width: 50rem) {
-    .info-form {
-        width: 500px;
-    }
-}

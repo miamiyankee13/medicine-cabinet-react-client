@@ -1,9 +1,12 @@
 .home {
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    font-weight: bold;
+    width: 80%;
+    max-width: 500px;
+    margin: 30px auto;
     text-align: center;
+    box-shadow: 0 2px 3px #CCC;
+    border: 1px solid #EEE;
+    padding: 15px;
+    background-color: white;
 }
 
 .home p {

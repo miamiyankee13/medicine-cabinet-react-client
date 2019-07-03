@@ -27,7 +27,7 @@ class LandingPage extends Component {
                 <img 
                     src="https://i.postimg.cc/mkSXbWqC/landing-page-img-1.jpg" 
                     alt="Green & Pink Cannabis Plant" 
-                    height="225" width="300" 
+                    height="225" width="250" 
                     className={styles.landingImage} 
                 />
                 <div className={styles.buttons}>
