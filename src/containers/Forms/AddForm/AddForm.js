@@ -137,7 +137,7 @@ class AddForm extends Component {
 
         return (
             <div className="info-form">
-                <h3>Add a new strain!</h3>
+                <h3 className="form-heading">Add a new strain!</h3>
                 {form}
             </div>
         );

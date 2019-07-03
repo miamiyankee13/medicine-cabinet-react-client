@@ -18,10 +18,19 @@ body {
     padding: 10px;
 }
     
-.info-form h3 {
+.dropdown-form {
+    margin: 20px auto;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 2px 3px #CCC;
+    border: 1px solid #EEE;
+    padding: 10px;
+}
+
+.form-heading {
     color: forestgreen;
 }
-    
+
 @media (min-width: 600px) {
     .info-form {
         width: 500px;

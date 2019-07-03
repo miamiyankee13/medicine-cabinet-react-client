@@ -163,7 +163,7 @@ class RegistrationForm extends Component {
 
         return (
             <div className="info-form">
-                <h3>Register to join the Medicine Cabinet community!</h3>
+                <h3 className="form-heading">Register to join the Medicine Cabinet community!</h3>
                 {form}
             </div>
         );

@@ -150,7 +150,7 @@ class EditForm extends Component {
 
         return (
             <div className="info-form">
-                <h3>Edit an existing strain!</h3>
+                <h3 className="form-heading">Edit an existing strain!</h3>
                 {form}
             </div>
         );
