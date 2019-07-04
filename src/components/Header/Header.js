@@ -23,7 +23,7 @@ class Header extends Component {
                         <NavItem link="/cabinet"><i className="fas fa-clinic-medical fa-lg"></i></NavItem>
                         <NavItem link="/add"><i className="fas fa-plus-circle fa-lg"></i></NavItem>
                         <NavItem link="/edit"><i className="fas fa-edit fa-lg"></i></NavItem>
-                        <NavItem exact link="/" clicked={this.handleLogout}><i className="fas fa-sign-out-alt fa-lg"></i></NavItem>
+                        <NavItem link="/" clicked={this.handleLogout}><i className="fas fa-sign-out-alt fa-lg"></i></NavItem>
                     </ul>
                 </nav>
             );

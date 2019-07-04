@@ -11,7 +11,3 @@
 .navItem a:active {
     color: forestgreen;
 }
-
-.navItem a.active {
-    color: forestgreen;
-}
