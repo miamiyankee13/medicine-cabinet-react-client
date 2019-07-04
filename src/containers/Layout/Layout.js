@@ -15,11 +15,15 @@ class Layout extends Component {
         });
     }
 
+    handleScrollTop = () => {
+        window.scrollTo(0,0);
+    }
+
     render() {
         return (
             <Fragment>
-                <Header open={this.state.showMobileNav} toggle={this.handleMobileNavToggle} />
-                <MobileNav open={this.state.showMobileNav} toggle={this.handleMobileNavToggle} />
+                <Header open={this.state.showMobileNav} toggle={this.handleMobileNavToggle} scrollTop={this.handleScrollTop} />
+                <MobileNav open={this.state.showMobileNav} toggle={this.handleMobileNavToggle} scrollTop={this.handleScrollTop} />
                 <main className={styles.main}>
                     {this.props.children}
                 </main>

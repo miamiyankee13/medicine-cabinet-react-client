@@ -40,7 +40,7 @@ class Header extends Component {
        return (
             <header className={styles.header}>
                 <div className={styles.headerBrand}>
-                    <Link to="/cabinet">
+                    <Link to="/cabinet" onClick={this.props.scrollTop}>
                         <h1 className={styles.headerBrandHeading}>Medicine Cabinet</h1>
                     </Link>
                 </div>

@@ -10,6 +10,7 @@ class MobileNav extends Component {
     handleLogout = () => {
         this.props.dispatch(clearAuth());
         clearAuthToken();
+        window.scrollTo(0,0);
     }
 
     render() {
@@ -21,9 +22,9 @@ class MobileNav extends Component {
                     onClick={this.props.toggle}
                 >
                     <ul className={styles.mobileNavItems}>
-                        <NavItem link="/cabinet"><i className="fas fa-clinic-medical fa-lg"></i></NavItem>
-                        <NavItem link="/add"><i className="fas fa-plus-circle fa-lg"></i></NavItem>
-                        <NavItem link="/edit"><i className="fas fa-edit fa-lg"></i></NavItem>
+                        <NavItem link="/cabinet" clicked={this.props.scrollTop}><i className="fas fa-clinic-medical fa-lg"></i></NavItem>
+                        <NavItem link="/add" clicked={this.props.scrollTop}><i className="fas fa-plus-circle fa-lg"></i></NavItem>
+                        <NavItem link="/edit" clicked={this.props.scrollTop}><i className="fas fa-edit fa-lg"></i></NavItem>
                         <NavItem exact link="/" clicked={this.handleLogout}><i className="fas fa-sign-out-alt fa-lg"></i></NavItem>
                     </ul>
                 </nav>
