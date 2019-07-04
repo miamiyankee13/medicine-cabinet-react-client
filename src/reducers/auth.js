@@ -3,14 +3,16 @@ import {
     CLEAR_AUTH, 
     AUTH_REQUEST, 
     AUTH_SUCCESS, 
-    AUTH_ERROR 
+    AUTH_ERROR,
+    REGISTRATION_ERROR 
 } from '../actions/auth/auth';
 
 const initialState = {
     authToken: null,
     currentUser: null,
     loading: false,
-    error: null
+    authError: null,
+    registrationError: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -27,7 +29,7 @@ export default function reducer(state = initialState, action) {
         case AUTH_REQUEST:
             return Object.assign({}, state, {
                 loading: true,
-                error: null
+                authError: null
             });
         case AUTH_SUCCESS:
             return Object.assign({}, state, {
@@ -37,7 +39,12 @@ export default function reducer(state = initialState, action) {
         case AUTH_ERROR:
             return Object.assign({}, state, {
                 loading: false,
-                error: action.error.message
+                authError: action.error.message
+            });
+        case REGISTRATION_ERROR:
+            return Object.assign({}, state, {
+                loading: false,
+                registrationError: action.error.message
             });
         default:
             return state;

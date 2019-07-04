@@ -31,6 +31,12 @@ export const authError = error => ({
     error
 });
 
+export const REGISTRATION_ERROR = 'REGISTRATION_ERROR';
+export const registrationError = error => ({
+    type: REGISTRATION_ERROR,
+    error
+});
+
 // Stores the auth token in state and localStorage, and decodes and stores
 // the user data stored in the token
 const storeAuthInfo = (authToken, dispatch) => {
@@ -98,6 +104,6 @@ export const registerUser = (userName, password, firstName, lastName) => dispatc
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .catch(err => {
-            dispatch(authError(err));
+            dispatch(registrationError(err));
         });
 };

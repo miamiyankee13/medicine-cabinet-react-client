@@ -150,8 +150,8 @@ class RegistrationForm extends Component {
         }
 
         let message = null;
-        if (this.props.authError) {
-            message = <p className="error">{this.props.authError}</p>
+        if (this.props.error) {
+            message = <p className="error">{this.props.error}</p>
         }
 
         const formElementsArray = [];
@@ -192,7 +192,7 @@ class RegistrationForm extends Component {
 
 const mapStateToProps = state => ({
     loggedIn: state.auth.currentUser !== null,
-    authError: state.auth.error
+    error: state.auth.registrationError
 });
 
 export default connect(mapStateToProps)(RegistrationForm);
