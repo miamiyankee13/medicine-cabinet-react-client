@@ -8,7 +8,6 @@ import styles from './MobileNav.module.css';
 
 class MobileNav extends Component {
     handleLogout = () => {
-        console.log('log out')
         this.props.dispatch(clearAuth());
         clearAuthToken();
     }

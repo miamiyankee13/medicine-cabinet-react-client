@@ -8,7 +8,6 @@ import styles from './Header.module.css';
 
 class Header extends Component { 
     handleLogout = () => {
-        console.log('log out')
         this.props.dispatch(clearAuth());
         clearAuthToken();
     }
