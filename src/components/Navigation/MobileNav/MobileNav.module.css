@@ -35,3 +35,9 @@
 .open {
     transform: translateX(0) !important;
 }
+
+@media (min-width: 50rem) {
+    .mobileNav {
+        display: none;
+    }
+}

@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { login } from '../../../actions/auth/auth';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 
@@ -74,10 +77,14 @@ class LoginForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        console.log(`${this.state.form.username.value} ${this.state.form.password.value}`);
+        this.props.dispatch(login(this.state.form.username.value, this.state.form.password.value));
     }
 
     render() {
+        if (this.props.loggedIn) {
+            return <Redirect to="/cabinet" />;
+        }
+
         const formElementsArray = [];
         for (let key in this.state.form) {
             formElementsArray.push({
@@ -113,4 +120,8 @@ class LoginForm extends Component {
     }
 }
 
-export default LoginForm;
+const mapStateToProps = state => ({
+    loggedIn: state.auth.currentUser !== null
+});
+
+export default connect(mapStateToProps)(LoginForm);

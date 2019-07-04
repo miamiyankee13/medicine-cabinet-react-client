@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom'
 import Button from '../UI/Button/Button';
 import styles from './LandingPage.module.css';
 
@@ -12,6 +14,10 @@ class LandingPage extends Component {
     }
 
     render() {
+        if (this.props.loggedIn) {
+            return <Redirect to="/cabinet" />;
+        }
+
         return (
             <section className={styles.home} aria-live="polite">
                 <p>
@@ -39,4 +45,8 @@ class LandingPage extends Component {
     }
 }
 
-export default LandingPage;
+const mapStateToProps = state => ({
+    loggedIn: state.auth.currentUser !== null
+});
+
+export default connect(mapStateToProps)(LandingPage);

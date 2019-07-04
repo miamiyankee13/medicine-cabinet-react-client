@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
 import authReducer from './reducers/auth';
+import strainsReducer from './reducers/strains';
 import { loadAuthToken } from './actions/auth/local-storage';
 import { setAuthToken, refreshAuthToken } from './actions/auth/auth';
 
@@ -8,7 +9,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
     combineReducers({
-        auth: authReducer
+        auth: authReducer,
+        strainData: strainsReducer
     }),
     composeEnhancers(
         applyMiddleware(thunk)
