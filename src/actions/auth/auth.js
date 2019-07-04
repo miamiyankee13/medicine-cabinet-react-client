@@ -82,13 +82,18 @@ export const refreshAuthToken = () => (dispatch, getState) => {
         });
 };
 
-export const registerUser = user => dispatch => {
+export const registerUser = (userName, password, firstName, lastName) => dispatch => {
     return fetch(`${API_BASE_URL}/users`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify({
+            userName,
+            password,
+            firstName,
+            lastName
+        })
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())

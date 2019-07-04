@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { login, registerUser } from '../../../actions/auth/auth';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 
@@ -131,10 +134,26 @@ class RegistrationForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        console.log(`${this.state.form.firstName.value} ${this.state.form.lastName.value} ${this.state.form.username.value} ${this.state.form.password.value}`);
+
+        const username = this.state.form.username.value;
+        const password = this.state.form.password.value;
+        const firstName = this.state.form.firstName.value;
+        const lastName = this.state.form.lastName.value;
+        
+        this.props.dispatch(registerUser(username, password, firstName, lastName))
+            .then(() => this.props.dispatch(login(username,password)))
     }
 
     render() {
+        if (this.props.loggedIn) {
+            return <Redirect to="/cabinet" />;
+        }
+
+        let message = null;
+        if (this.props.authError) {
+            message = <p className="error">{this.props.authError}</p>
+        }
+
         const formElementsArray = [];
         for (let key in this.state.form) {
             formElementsArray.push({
@@ -163,6 +182,7 @@ class RegistrationForm extends Component {
 
         return (
             <section className="info-form">
+                {message}
                 <h3 className="form-heading">Register to join the Medicine Cabinet community!</h3>
                 {form}
             </section>
@@ -170,4 +190,9 @@ class RegistrationForm extends Component {
     }
 }
 
-export default RegistrationForm;
+const mapStateToProps = state => ({
+    loggedIn: state.auth.currentUser !== null,
+    authError: state.auth.error
+});
+
+export default connect(mapStateToProps)(RegistrationForm);

@@ -77,12 +77,19 @@ class LoginForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.dispatch(login(this.state.form.username.value, this.state.form.password.value));
+        const username = this.state.form.username.value;
+        const password = this.state.form.password.value
+        this.props.dispatch(login(username, password));
     }
 
     render() {
         if (this.props.loggedIn) {
             return <Redirect to="/cabinet" />;
+        }
+
+        let message = null;
+        if (this.props.authError) {
+            message = <p className="error">{this.props.authError}</p>
         }
 
         const formElementsArray = [];
@@ -113,6 +120,7 @@ class LoginForm extends Component {
 
         return (
             <section className="info-form">
+                {message}
                 <h3 className="form-heading">Log in to view your cabinet!</h3>
                 {form}
             </section>
@@ -121,7 +129,8 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => ({
-    loggedIn: state.auth.currentUser !== null
+    loggedIn: state.auth.currentUser !== null,
+    authError: state.auth.error
 });
 
 export default connect(mapStateToProps)(LoginForm);

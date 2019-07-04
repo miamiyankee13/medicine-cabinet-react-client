@@ -50,3 +50,6 @@ body {
     color: forestgreen;
 }
 
+.error {
+    color: red;
+}
