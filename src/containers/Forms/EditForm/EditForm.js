@@ -119,6 +119,7 @@ class EditForm extends Component {
     handleSubmit = event => {
         event.preventDefault();
         console.log(`${this.state.form.id.value} ${this.state.form.name.value} ${this.state.form.type.value} ${this.state.form.flavor.value} ${this.state.form.description.value}`);
+        window.scrollTo(0,0);
     }
 
     render() {

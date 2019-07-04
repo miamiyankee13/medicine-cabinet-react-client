@@ -141,7 +141,8 @@ class RegistrationForm extends Component {
         const lastName = this.state.form.lastName.value;
         
         this.props.dispatch(registerUser(username, password, firstName, lastName))
-            .then(() => this.props.dispatch(login(username,password)))
+            .then(() => this.props.dispatch(login(username,password)));
+        window.scrollTo(0,0);
     }
 
     render() {

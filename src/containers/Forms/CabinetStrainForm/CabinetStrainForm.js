@@ -38,7 +38,8 @@ class CabinetStrainForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        console.log(`${this.state.form.id.value}`)
+        console.log(`${this.state.form.id.value}`);
+        window.scrollTo(0,0);
     }
 
     render() {

@@ -80,6 +80,7 @@ class LoginForm extends Component {
         const username = this.state.form.username.value;
         const password = this.state.form.password.value
         this.props.dispatch(login(username, password));
+        window.scrollTo(0,0);
     }
 
     render() {

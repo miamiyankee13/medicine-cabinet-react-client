@@ -62,6 +62,7 @@ class StrainCommentForm extends Component {
     handleSubmit = event => {
         event.preventDefault();
         console.log(`${this.state.form.comment.value}`);
+        window.scrollTo(0,0);
     }
 
     render() {

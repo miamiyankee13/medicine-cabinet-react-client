@@ -40,7 +40,8 @@ class CabinetFilterForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        console.log(`${this.state.form.type.value}`)
+        console.log(`${this.state.form.type.value}`);
+        window.scrollTo(0,0);
     }
 
     render() {
