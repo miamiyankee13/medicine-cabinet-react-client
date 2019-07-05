@@ -8,13 +8,13 @@ class CabinetStrainForm extends Component {
             id: {
                 elementType: 'select',
                 elementConfig: {
-                    options: this.props.userStrains.map(strain => {
-                        return {value: strain.id , display: strain.name}
+                    options: this.props.strains.map(strain => {
+                        return {value: strain._id , display: strain.name}
                     }),
                     name: 'id',
                     label: 'Strain'
                 },
-                value: this.props.userStrains[0].id
+                value: this.props.strains[0]._id
             }
         }
     }
