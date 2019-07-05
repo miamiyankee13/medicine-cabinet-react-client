@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { refreshAuthToken } from './actions/auth/auth';
-import { fetchStrains } from './actions/strains';
 import Layout from './containers/Layout/Layout';
 import LandingPage from './components/LandingPage/LandingPage';
 import LoginForm from './containers/Forms/LoginForm/LoginForm';
@@ -11,10 +10,6 @@ import AddForm from './containers/Forms/AddForm/AddForm';
 import EditForm from './containers/Forms/EditForm/EditForm';
 
 class App extends Component {
-    componentDidMount() {
-        this.props.dispatch(fetchStrains());
-    }
-
     componentDidUpdate(prevProps) {
         if (!prevProps.loggedIn && this.props.loggedIn) {
             // When we are logged in, refresh the auth token periodically
