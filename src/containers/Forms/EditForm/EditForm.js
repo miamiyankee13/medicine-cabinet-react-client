@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchStrains, editStrain, clearFeedback } from '../../../actions/strains';
+import Input from '../../../components/UI/FormElements/Input/Input';
 import Select from '../../../components/UI/FormElements/Select/Select';
 import Button from '../../../components/UI/Button/Button';
 
@@ -90,20 +91,14 @@ class EditForm extends Component {
                         return <option key={strain._id} value={strain._id}>{strain.name}</option>
                     })}
                 />
-                
-                <div className="input">
-                    <label className="label" htmlFor="name">
-                        Name
-                    </label>
-                    <input 
-                        className="input-element" 
-                        id="name" name="name" 
-                        type="text" 
-                        placeholder="Strain Name" 
-                        value={this.state.form.name} 
-                        onChange={(event) => this.handleInputChange(event, "name")} 
-                    />
-                </div>
+                <Input 
+                    name="name"
+                    label="Name"
+                    type="text"
+                    placeholder="Strain Name"
+                    value={this.state.form.name}
+                    changed={(event) => this.handleInputChange(event, "name")}
+                />
                 <Select 
                     name="type"
                     label="Type"
@@ -113,34 +108,22 @@ class EditForm extends Component {
                         return <option key={option} value={option}>{option}</option>
                     })}
                 />
-                
-                <div className="input">
-                    <label className="label" htmlFor="flavor">
-                        Flavor
-                    </label>
-                    <input 
-                        className="input-element" 
-                        id="flavor" name="flavor" 
-                        type="text" 
-                        placeholder="Strain Flavor" 
-                        value={this.state.form.flavor} 
-                        onChange={(event) => this.handleInputChange(event, "flavor")} 
-                    />
-                </div>
-                <div className="input">
-                    <label className="label" htmlFor="description">
-                        Description
-                    </label>
-                    <input 
-                        className="input-element" 
-                        id="description" 
-                        name="description" 
-                        type="text" 
-                        placeholder="Strain Description" 
-                        value={this.state.form.description} 
-                        onChange={(event) => this.handleInputChange(event, "description")} 
-                    />
-                </div>
+                <Input 
+                    name="flavor"
+                    label="Flavor"
+                    type="text"
+                    placeholder="Strain Flavor"
+                    value={this.state.form.flavor}
+                    changed={(event) => this.handleInputChange(event, "flavor")}
+                />
+                <Input 
+                    name="description"
+                    label="Description"
+                    type="text"
+                    placeholder="Strain Description"
+                    value={this.state.form.description}
+                    changed={(event) => this.handleInputChange(event, "description")}
+                />
                 <Button disabled={!this.state.formIsValid}>Edit Strain</Button>
             </form>
         );
