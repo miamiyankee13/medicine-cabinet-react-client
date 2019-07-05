@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Textarea from '../../../components/UI/FormElements/Textarea/Textarea';
 import Button from '../../../components/UI/Button/Button';
 
@@ -44,10 +45,6 @@ class StrainCommentForm extends Component {
             message = <p className="error">{this.props.error}</p>
         }
 
-        if (this.props.feedback) {
-            message = <p className="success">{this.props.feedback}</p>
-        }
-
         return (
             <section className="info-form">
                 {message}
@@ -69,4 +66,9 @@ class StrainCommentForm extends Component {
     }
 }
 
-export default StrainCommentForm;
+const mapStateToProps = state => ({
+    loading: state.strainData.loading,
+    error: state.strainData.error
+});
+
+export default connect(mapStateToProps)(StrainCommentForm);

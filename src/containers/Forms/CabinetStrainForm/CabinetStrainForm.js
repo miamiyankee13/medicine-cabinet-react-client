@@ -1,78 +1,73 @@
 import React, { Component } from 'react';
-import Input from '../../../components/UI/Input/Input';
+import { connect } from 'react-redux';
+import Select from '../../../components/UI/FormElements/Select/Select';
 import Button from '../../../components/UI/Button/Button';
 
 class CabinetStrainForm extends Component {
     state = {
         form: {
-            id: {
-                elementType: 'select',
-                elementConfig: {
-                    options: this.props.strains.map(strain => {
-                        return {value: strain._id , display: strain.name}
-                    }),
-                    name: 'id',
-                    label: 'Strain'
-                },
-                value: this.props.strains[0]._id
-            }
-        }
+            id: ''
+        },
+        formIsValid: false
     }
 
-    handleInputChange = event => {
+    handleInputChange = (event, inputId) => {
         const updatedForm = {
             ...this.state.form
         }
 
-        const updatedFormElement = {
-            ...this.state.form.id
+        updatedForm[inputId] = event.target.value;
+
+        let formIsValid = true;
+        for (let input in updatedForm) {
+            formIsValid = updatedForm[input].trim() !== "" && formIsValid;
         }
-        
-        updatedFormElement.value = event.target.value;
-        updatedForm.id = updatedFormElement;
 
         this.setState({
-            form: updatedForm
+            form: updatedForm,
+            formIsValid
         });
     }
 
+
     handleSubmit = event => {
         event.preventDefault();
-        console.log(`${this.state.form.id.value}`);
+        //add check to see if strain exists in user strains already, display alert
+        alert("HEY")
+        console.log(`${this.state.form.id}`);
         window.scrollTo(0,0);
     }
 
     render() {
-        const formElementsArray = [];
-        for (let key in this.state.form) {
-            formElementsArray.push({
-                id: key,
-                config: this.state.form[key]
-            });
+        let message = null;
+        if (this.props.error) {
+            message = <p className="error">{this.props.error}</p>
         }
-
-        let form = (
-            <form onSubmit={this.handleSubmit}>
-                {formElementsArray.map(formElement => (
-                    <Input
-                        key={formElement.id}
-                        elementType={formElement.config.elementType}
-                        elementConfig={formElement.config.elementConfig}
-                        value={formElement.config.value}
-                        changed={(event) => this.handleInputChange(event)}
-                    />
-                ))}
-                <Button>Add</Button>
-            </form>
-        );
 
         return (
             <div className="dropdown-form">
+                {message}
                 <h3 className="form-heading">Add a strain to your cabinet!</h3>
-                {form}
+                <form onSubmit={this.handleSubmit}>
+                    <Select  
+                        name="id"
+                        label="Strain"
+                        value={this.state.form.id} 
+                        changed={(event) => this.handleInputChange(event, "id")}
+                        options={this.props.strains.map(strain => {
+                            return <option key={strain._id} value={strain._id}>{strain.name}</option>
+                        })}
+                    />
+                    <Button disabled={!this.state.formIsValid}>Add Strain</Button>
+                </form>
             </div>
         );
     }
 }
 
-export default CabinetStrainForm;
+const mapStateToProps = state => ({
+    strains: state.strainData.strains,
+    error: state.strainData.error
+});
+
+export default connect(mapStateToProps)(CabinetStrainForm);
