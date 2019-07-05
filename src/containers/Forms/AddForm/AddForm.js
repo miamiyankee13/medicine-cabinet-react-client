@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStrain, clearFeedback } from '../../../actions/strains';
+import Select from '../../../components/UI/FormElements/Select/Select';
 import Button from '../../../components/UI/Button/Button';
 
 class AddForm extends Component {
@@ -11,7 +12,8 @@ class AddForm extends Component {
             flavor: '',
             description: ''
         },
-        formIsValid: false
+        formIsValid: false,
+        typeOptions: ['Sativa', 'Indica', 'Hybrid']
     }
 
     componentWillUnmount() {
@@ -84,21 +86,15 @@ class AddForm extends Component {
                         onChange={(event) => this.handleInputChange(event, "name")} 
                     />
                 </div>
-                <div className="input">
-                    <label className="label" htmlFor="type">
-                        Type
-                    </label>
-                    <select 
-                        className="input-element" 
-                        id="type" name="type"  
-                        value={this.state.form.type} onChange={(event) => this.handleInputChange(event, "type")}
-                    >
-                        <option value="">--Select Type--</option>
-                        <option value="Sativa">Sativa</option>
-                        <option value="Indica">Indica</option>
-                        <option value="Hybrid">Hybrid</option>
-                    </select>
-                </div>
+                <Select 
+                    name="type"
+                    label="Type"
+                    value={this.state.form.type}
+                    changed={(event) => this.handleInputChange(event, "type")}
+                    options={this.state.typeOptions.map(option => {
+                        return <option key={option} value={option}>{option}</option>
+                    })}
+                />
                 <div className="input">
                     <label className="label" htmlFor="flavor">
                         Flavor
