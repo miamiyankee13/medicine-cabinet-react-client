@@ -170,6 +170,10 @@ export const filterUserStrainsError = error => ({
     error
 });
 
+export const CLEAR_FEEDBACK = 'CLEAR_FEEDBACK';
+export const clearFeedback = () => ({
+    type: CLEAR_FEEDBACK
+});
 
 export const fetchUserStrains = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;

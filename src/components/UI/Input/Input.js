@@ -1,12 +1,11 @@
 import React from 'react';
-import styles from './Input.module.css';
 
 const Input = props => {
     let inputElement = null;
-    const inputClasses = [styles.inputElement];
+    const inputClasses = ["input-element"];
 
     if (props.invalid && props.shouldValidate && props.touched) {
-        inputClasses.push(styles.invalid);
+        inputClasses.push("invalid");
     }
 
     switch(props.elementType) {
@@ -55,8 +54,8 @@ const Input = props => {
     }
 
     return (
-        <div className={styles.input}>
-            <label className={styles.label} htmlFor={props.elementConfig.name}>
+        <div className="input">
+            <label className="label" htmlFor={props.elementConfig.name}>
                 {props.elementConfig.label}
             </label>
             {inputElement}

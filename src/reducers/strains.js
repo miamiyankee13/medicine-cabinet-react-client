@@ -29,7 +29,8 @@ import {
     RESET_CURRENT_STRAIN,
     FILTER_USER_STRAINS_REQUEST,
     FILTER_USER_STRAINS_SUCCESS,
-    FILTER_USER_STRAINS_ERROR
+    FILTER_USER_STRAINS_ERROR,
+    CLEAR_FEEDBACK
 } from '../actions/strains';
 
 const initialState = {
@@ -201,6 +202,10 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {
                 loading: false,
                 error: action.error.message
+            });
+        case CLEAR_FEEDBACK:
+            return Object.assign({}, state, {
+                feedback: null
             });
         default:
             return state;

@@ -25,6 +25,37 @@ body {
     height: 100%;
 }
 
+.input {
+    width: 100%;
+    padding: 10px;
+}
+
+.label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.input-element {
+    outline: none;
+    border: 1px solid #CCC;
+    background-color: white;
+    font: inherit;
+    padding: 6px 10px;
+    display: block;
+    width: 100%;
+}
+
+.input-element:focus {
+    outline: none;
+    background-color: #CCC;
+}
+
+.invalid {
+    border: 1px solid red;
+    background-color: #FDA49A;
+}
+
 .info-form {
     margin: 35px auto;
     width: 80%;
@@ -52,4 +83,8 @@ body {
 
 .error {
     color: red;
+}
+
+.success {
+    color: green;
 }
