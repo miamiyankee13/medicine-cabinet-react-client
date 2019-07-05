@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Input from '../../../components/UI/Input/Input';
 import Textarea from '../../../components/UI/FormElements/Textarea/Textarea';
 import Button from '../../../components/UI/Button/Button';
 
@@ -31,6 +30,7 @@ class StrainCommentForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
+        //addCommentToStrain
         window.scrollTo(0,0);
     }
 
@@ -48,26 +48,22 @@ class StrainCommentForm extends Component {
             message = <p className="success">{this.props.feedback}</p>
         }
 
-        let form = (
-            <form onSubmit={this.handleSubmit}>
-                <Textarea 
-                    name="comment"
-                    label="Comment"
-                    rows="4"
-                    cols="30"
-                    placeholder="Comment..."
-                    value={this.state.form.comment}
-                    changed={(event) => this.handleInputChange(event, "comment")}
-                />
-                <Button disabled={!this.state.formIsValid}>Add Comment</Button>
-            </form>
-        );
-
         return (
             <section className="info-form">
                 {message}
                 <h3 className="form-heading">Add a comment!</h3>
-                {form}
+                <form onSubmit={this.handleSubmit}>
+                    <Textarea 
+                        name="comment"
+                        label="Comment"
+                        rows="4"
+                        cols="30"
+                        placeholder="Comment..."
+                        value={this.state.form.comment}
+                        changed={(event) => this.handleInputChange(event, "comment")}
+                    />
+                    <Button disabled={!this.state.formIsValid}>Add Comment</Button>
+            </form>
             </section>
         );
     }

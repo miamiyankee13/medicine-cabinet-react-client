@@ -80,59 +80,55 @@ class EditForm extends Component {
             message = <p className="success">{this.props.feedback}</p>
         }
 
-        let form = (
-            <form onSubmit={this.handleSubmit}>
-                <Select  
-                    name="id"
-                    label="Strain"
-                    value={this.state.form.id} 
-                    changed={(event) => this.handleInputChange(event, "id")}
-                    options={this.props.strains.map(strain => {
-                        return <option key={strain._id} value={strain._id}>{strain.name}</option>
-                    })}
-                />
-                <Input 
-                    name="name"
-                    label="Name"
-                    type="text"
-                    placeholder="Strain Name"
-                    value={this.state.form.name}
-                    changed={(event) => this.handleInputChange(event, "name")}
-                />
-                <Select 
-                    name="type"
-                    label="Type"
-                    value={this.state.form.type}
-                    changed={(event) => this.handleInputChange(event, "type")}
-                    options={this.state.typeOptions.map(option => {
-                        return <option key={option} value={option}>{option}</option>
-                    })}
-                />
-                <Input 
-                    name="flavor"
-                    label="Flavor"
-                    type="text"
-                    placeholder="Strain Flavor"
-                    value={this.state.form.flavor}
-                    changed={(event) => this.handleInputChange(event, "flavor")}
-                />
-                <Input 
-                    name="description"
-                    label="Description"
-                    type="text"
-                    placeholder="Strain Description"
-                    value={this.state.form.description}
-                    changed={(event) => this.handleInputChange(event, "description")}
-                />
-                <Button disabled={!this.state.formIsValid}>Edit Strain</Button>
-            </form>
-        );
-
         return (
             <section className="info-form">
                 {message}
                 <h3 className="form-heading">Edit an existing strain!</h3>
-                {form}
+                <form onSubmit={this.handleSubmit}>
+                    <Select  
+                        name="id"
+                        label="Strain"
+                        value={this.state.form.id} 
+                        changed={(event) => this.handleInputChange(event, "id")}
+                        options={this.props.strains.map(strain => {
+                            return <option key={strain._id} value={strain._id}>{strain.name}</option>
+                        })}
+                    />
+                    <Input 
+                        name="name"
+                        label="Name"
+                        type="text"
+                        placeholder="Strain Name"
+                        value={this.state.form.name}
+                        changed={(event) => this.handleInputChange(event, "name")}
+                    />
+                    <Select 
+                        name="type"
+                        label="Type"
+                        value={this.state.form.type}
+                        changed={(event) => this.handleInputChange(event, "type")}
+                        options={this.state.typeOptions.map(option => {
+                            return <option key={option} value={option}>{option}</option>
+                        })}
+                    />
+                    <Input 
+                        name="flavor"
+                        label="Flavor"
+                        type="text"
+                        placeholder="Strain Flavor"
+                        value={this.state.form.flavor}
+                        changed={(event) => this.handleInputChange(event, "flavor")}
+                    />
+                    <Input 
+                        name="description"
+                        label="Description"
+                        type="text"
+                        placeholder="Strain Description"
+                        value={this.state.form.description}
+                        changed={(event) => this.handleInputChange(event, "description")}
+                    />
+                    <Button disabled={!this.state.formIsValid}>Edit Strain</Button>
+                </form>
             </section>
         );
     }
