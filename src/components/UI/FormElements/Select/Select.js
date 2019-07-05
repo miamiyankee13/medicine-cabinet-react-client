@@ -16,7 +16,6 @@ const Select = props => (
             {props.options}
         </select>
     </div>
- 
 );
 
 export default Select;

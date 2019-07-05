@@ -1,56 +1,26 @@
 import React, { Component } from 'react';
 import Input from '../../../components/UI/Input/Input';
+import Textarea from '../../../components/UI/FormElements/Textarea/Textarea';
 import Button from '../../../components/UI/Button/Button';
 
 class StrainCommentForm extends Component {
     state = {
         form: {
-            comment: {
-                elementType: 'textarea',
-                elementConfig: {
-                    name: 'comment',
-                    label: 'Comment',
-                    placeholder: 'Your Comment',
-                    rows: '4',
-                    cols: '30'
-                },
-                value: '',
-                validation: {
-                    required: true
-                },
-                valid: false,
-                touched: false
-            }
+            comment: ''
         },
         formIsValid: false
     }
 
-    validationCheck(value, rules) {
-        let isValid = true;
-        if (rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-
-        return isValid
-    }
-
-    handleInputChange = (event) => {
+    handleInputChange = (event, inputId) => {
         const updatedForm = {
             ...this.state.form
         }
 
-        const updatedFormElement = {
-            ...updatedForm.comment
-        }
-
-        updatedFormElement.value = event.target.value;
-        updatedFormElement.valid = this.validationCheck(updatedFormElement.value, updatedFormElement.validation);
-        updatedFormElement.touched = true;
-        updatedForm.comment = updatedFormElement
+        updatedForm[inputId] = event.target.value;
 
         let formIsValid = true;
         for (let input in updatedForm) {
-            formIsValid = updatedForm[input].valid && formIsValid;
+            formIsValid = updatedForm[input].trim() !== "" && formIsValid;
         }
 
         this.setState({
@@ -61,42 +31,44 @@ class StrainCommentForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        console.log(`${this.state.form.comment.value}`);
         window.scrollTo(0,0);
     }
 
     render() {
-        const formElementsArray = [];
-        for (let key in this.state.form) {
-            formElementsArray.push({
-                id: key,
-                config: this.state.form[key]
-            });
+        if (this.props.loading) {
+            return <h3>Loading...</h3>
+        }
+
+        let message = null;
+        if (this.props.error) {
+            message = <p className="error">{this.props.error}</p>
+        }
+
+        if (this.props.feedback) {
+            message = <p className="success">{this.props.feedback}</p>
         }
 
         let form = (
             <form onSubmit={this.handleSubmit}>
-                {formElementsArray.map(formElement => (
-                    <Input
-                        key={formElement.id}
-                        elementType={formElement.config.elementType}
-                        elementConfig={formElement.config.elementConfig}
-                        value={formElement.config.value}
-                        invalid={!formElement.config.valid}
-                        shouldValidate={formElement.config.validation}
-                        touched={formElement.config.touched}
-                        changed={(event) => this.handleInputChange(event)}
-                    />
-                ))}
+                <Textarea 
+                    name="comment"
+                    label="Comment"
+                    rows="4"
+                    cols="30"
+                    placeholder="Comment..."
+                    value={this.state.form.comment}
+                    changed={(event) => this.handleInputChange(event, "comment")}
+                />
                 <Button disabled={!this.state.formIsValid}>Add Comment</Button>
             </form>
         );
 
         return (
-            <div className="info-form">
+            <section className="info-form">
+                {message}
                 <h3 className="form-heading">Add a comment!</h3>
                 {form}
-            </div>
+            </section>
         );
     }
 }
