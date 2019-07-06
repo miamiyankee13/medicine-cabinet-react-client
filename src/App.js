@@ -8,7 +8,6 @@ import LoginForm from './containers/Forms/LoginForm/LoginForm';
 import RegistrationForm from './containers/Forms/RegistrationForm/RegistrationForm';
 import AddForm from './containers/Forms/AddForm/AddForm';
 import EditForm from './containers/Forms/EditForm/EditForm';
-import CabinetStrainForm from './containers/Forms/CabinetStrainForm/CabinetStrainForm';
 
 class App extends Component {
     componentDidUpdate(prevProps) {
@@ -45,7 +44,7 @@ class App extends Component {
             <Fragment>
                 <Layout>
                     <Switch>
-                        <Route path="/cabinet" component={CabinetStrainForm} />
+                        <Route path="/cabinet" render={() => <h1>Cabinet</h1>} />
                         <Route path="/add" component={AddForm} />
                         <Route path="/edit" component={EditForm} />
                         <Route path="/login" component={LoginForm} />
