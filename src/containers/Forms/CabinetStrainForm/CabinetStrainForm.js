@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addStrainToCabinet, fetchUserStrains } from '../../../actions/strains';
 import Select from '../../../components/UI/FormElements/Select/Select';
 import Button from '../../../components/UI/Button/Button';
 
@@ -8,7 +9,12 @@ class CabinetStrainForm extends Component {
         form: {
             id: ''
         },
-        formIsValid: false
+        formIsValid: false,
+        message: null
+    }
+
+    componentDidMount() {
+        this.props.dispatch(fetchUserStrains());
     }
 
     handleInputChange = (event, inputId) => {
@@ -32,21 +38,40 @@ class CabinetStrainForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        //add check to see if strain exists in user strains already, display alert
-        alert("HEY")
-        console.log(`${this.state.form.id}`);
+
+        const strainExists = this.props.userStrains.find(element => element._id === this.state.form.id);
+        if (strainExists) {
+            return this.setState({
+                        message: <p className="error">This strain is already in your cabinet!</p>
+                    }); 
+        }
+
+        const id = this.state.form.id
+        this.props.dispatch(addStrainToCabinet(id))
+            .then(() => {
+                this.props.dispatch(fetchUserStrains());
+                this.setState({
+                    form: {
+                        id: ''
+                    },
+                    formIsValid: false,
+                    message: null
+                });
+            });
+
         window.scrollTo(0,0);
     }
 
     render() {
-        let message = null;
         if (this.props.error) {
-            message = <p className="error">{this.props.error}</p>
+            this.setState({
+                message: <p className="error">{this.props.error}</p>
+            });
         }
 
         return (
             <div className="dropdown-form">
-                {message}
+                {this.state.message}
                 <h3 className="form-heading">Add a strain to your cabinet!</h3>
                 <form onSubmit={this.handleSubmit}>
                     <Select  
@@ -67,6 +92,7 @@ class CabinetStrainForm extends Component {
 
 const mapStateToProps = state => ({
     strains: state.strainData.strains,
+    userStrains: state.strainData.userStrains,
     error: state.strainData.error
 });
 
