@@ -17,23 +17,6 @@ class RegistrationForm extends Component {
         formIsValid: false
     }
 
-    validationCheck(value, rules) {
-        let isValid = true;
-        if (rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-
-        if (rules.minLength) {
-            isValid = value.length >= rules.minLength && isValid;
-        }
-
-        if (rules.shouldMatch) {
-            isValid = value === this.state.form.password.value && isValid;
-        }
-
-        return isValid
-    }
-
     handleInputChange = (event, inputId) => {
         const updatedForm = {
             ...this.state.form
@@ -42,7 +25,6 @@ class RegistrationForm extends Component {
         updatedForm[inputId] = event.target.value;
 
         let formIsValid = true;
-
         for (let input in updatedForm) {
             formIsValid = updatedForm[input].trim() !== "" && formIsValid;
             if (input === "password" || input === "passwordCheck") {
