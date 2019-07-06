@@ -12,7 +12,8 @@
     outline: none;
 }
 
-.button:hover {
+.button:hover:enabled,
+.button:active:enabled {
     transform: scale(1.1);
 }
 
