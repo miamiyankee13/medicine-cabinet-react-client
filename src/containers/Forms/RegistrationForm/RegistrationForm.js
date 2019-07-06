@@ -2,90 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login, registerUser } from '../../../actions/auth/auth';
-import Input from '../../../components/UI/Input/Input';
+import Input from '../../../components/UI/FormElements/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 
 class RegistrationForm extends Component {
     state = {
         form: {
-            firstName: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    name: 'first-name',
-                    label: 'First Name',
-                    placeholder: 'Your First Name'
-                },
-                value: '',
-                validation: {
-                    required: true
-                },
-                valid: false,
-                touched: false
-            },
-            lastName: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    name: 'last-name',
-                    label: 'Last Name',
-                    placeholder: 'Your Last Name'
-                },
-                value: '',
-                validation: {
-                    required: true
-                },
-                valid: false,
-                touched: false
-            },
-            username: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    name: 'username',
-                    label: 'Username',
-                    placeholder: 'Your Username'
-                },
-                value: '',
-                validation: {
-                    required: true
-                },
-                valid: false,
-                touched: false
-            },
-            password: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'password',
-                    name: 'password',
-                    label: 'Password (10+ characters)',
-                    placeholder: 'Your Password'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 10
-                },
-                valid: false,
-                touched: false
-            },
-            passwordCheck: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'password',
-                    name: 'password-check',
-                    label: 'Confirm Password',
-                    placeholder: 'Confirm Password'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 10,
-                    shouldMatch: true
-                },
-                valid: false,
-                touched: false
-            }
+            firstName: '',
+            lastName: '',
+            username: '',
+            password: '',
+            passwordCheck: ''
         },
         formIsValid: false
     }
@@ -112,18 +39,21 @@ class RegistrationForm extends Component {
             ...this.state.form
         }
 
-        const updatedFormElement = {
-            ...updatedForm[inputId]
-        }
-
-        updatedFormElement.value = event.target.value;
-        updatedFormElement.valid = this.validationCheck(updatedFormElement.value, updatedFormElement.validation);
-        updatedFormElement.touched = true;
-        updatedForm[inputId] = updatedFormElement
+        updatedForm[inputId] = event.target.value;
 
         let formIsValid = true;
+
         for (let input in updatedForm) {
-            formIsValid = updatedForm[input].valid && formIsValid;
+            formIsValid = updatedForm[input].trim() !== "" && formIsValid;
+            if (input === "password" || input === "passwordCheck") {
+                formIsValid = updatedForm[input].length > 9 && formIsValid;
+            }
+        }
+
+        if (inputId === "password") {
+            formIsValid = updatedForm[inputId] === this.state.form.passwordCheck && formIsValid;
+        } else if (inputId === "passwordCheck") {
+            formIsValid = updatedForm[inputId] === this.state.form.password && formIsValid;
         }
 
         this.setState({
@@ -132,14 +62,13 @@ class RegistrationForm extends Component {
         });
     }
 
+
     handleSubmit = event => {
         event.preventDefault();
-
-        const username = this.state.form.username.value;
-        const password = this.state.form.password.value;
-        const firstName = this.state.form.firstName.value;
-        const lastName = this.state.form.lastName.value;
-        
+        const username = this.state.form.username;
+        const password = this.state.form.password;
+        const firstName = this.state.form.firstName;
+        const lastName = this.state.form.lastName;
         this.props.dispatch(registerUser(username, password, firstName, lastName))
             .then(() => this.props.dispatch(login(username,password)));
         window.scrollTo(0,0);
@@ -155,37 +84,53 @@ class RegistrationForm extends Component {
             message = <p className="error">{this.props.error}</p>
         }
 
-        const formElementsArray = [];
-        for (let key in this.state.form) {
-            formElementsArray.push({
-                id: key,
-                config: this.state.form[key]
-            });
-        }
-
-        let form = (
-            <form onSubmit={this.handleSubmit}>
-                {formElementsArray.map(formElement => (
-                    <Input
-                        key={formElement.id}
-                        elementType={formElement.config.elementType}
-                        elementConfig={formElement.config.elementConfig}
-                        value={formElement.config.value}
-                        invalid={!formElement.config.valid}
-                        shouldValidate={formElement.config.validation}
-                        touched={formElement.config.touched}
-                        changed={(event) => this.handleInputChange(event, formElement.id)}
-                    />
-                ))}
-                <Button disabled={!this.state.formIsValid}>Register</Button>
-            </form>
-        );
-
         return (
             <section className="info-form">
                 {message}
                 <h3 className="form-heading">Register to join the Medicine Cabinet community!</h3>
-                {form}
+                <form onSubmit={this.handleSubmit}>
+                    <Input 
+                        name="first-name" 
+                        label="First Name" 
+                        type="text" 
+                        placeholder="First Name"
+                        value={this.state.form.firstName}
+                        changed={(event) => this.handleInputChange(event, "firstName")} 
+                    />
+                    <Input 
+                        name="last-name" 
+                        label="Last Name" 
+                        type="text" 
+                        placeholder="Last Name"
+                        value={this.state.form.lastName}
+                        changed={(event) => this.handleInputChange(event, "lastName")} 
+                    />
+                    <Input 
+                        name="username" 
+                        label="Username" 
+                        type="text" 
+                        placeholder="Your Username"
+                        value={this.state.form.username}
+                        changed={(event) => this.handleInputChange(event, "username")} 
+                    />
+                    <Input 
+                        name="password" 
+                        label="Password (10+ characters)" 
+                        type="password" 
+                        placeholder="Your Password"
+                        value={this.state.form.password}
+                        changed={(event) => this.handleInputChange(event, "password")} 
+                    />
+                    <Input 
+                        name="password-check" 
+                        label="Confirm Password" 
+                        type="password" 
+                        placeholder="Confirm Password"
+                        value={this.state.form.passwordCheck}
+                        changed={(event) => this.handleInputChange(event, "passwordCheck")} 
+                    />
+                    <Button disabled={!this.state.formIsValid}>Register</Button>
+                </form>
             </section>
         );
     }

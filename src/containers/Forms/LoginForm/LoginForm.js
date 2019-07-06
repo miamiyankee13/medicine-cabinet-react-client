@@ -14,14 +14,6 @@ class LoginForm extends Component {
         formIsValid: false
     }
 
-    validationCheck(value, rules) {
-        let isValid = true;
-        if (rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-        return isValid
-    }
-
     handleInputChange = (event, inputId) => {
         const updatedForm = {
             ...this.state.form
@@ -63,8 +55,22 @@ class LoginForm extends Component {
                 {message}
                 <h3 className="form-heading">Log in to view your cabinet!</h3>
                 <form onSubmit={this.handleSubmit}>
-                    <Input name="username" label="Username" type="text" placeholder="Your Username" value={this.state.form.username} changed={(event) => this.handleInputChange(event, "username")} />
-                    <Input name="password" label="Password" type="password" placeholder="Your Password" value={this.state.form.password} changed={(event) => this.handleInputChange(event, "password")} />
+                    <Input 
+                        name="username" 
+                        label="Username" 
+                        type="text" 
+                        placeholder="Your Username" 
+                        value={this.state.form.username} 
+                        changed={(event) => this.handleInputChange(event, "username")} 
+                    />
+                    <Input 
+                        name="password" 
+                        label="Password" 
+                        type="password" 
+                        placeholder="Your Password" 
+                        value={this.state.form.password} 
+                        changed={(event) => this.handleInputChange(event, "password")} 
+                    />
                     <Button disabled={!this.state.formIsValid}>Log In</Button>
                 </form>
             </section>
