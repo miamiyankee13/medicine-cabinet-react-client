@@ -9,8 +9,7 @@ class CabinetStrainForm extends Component {
         form: {
             id: ''
         },
-        formIsValid: false,
-        message: null
+        formIsValid: false
     }
 
     handleInputChange = (event, inputId) => {
@@ -37,9 +36,7 @@ class CabinetStrainForm extends Component {
 
         const strainExists = this.props.userStrains.find(element => element._id === this.state.form.id);
         if (strainExists) {
-            return this.setState({
-                        message: <p className="error">This strain is already in your cabinet!</p>
-                    }); 
+            return alert('This strain is already in your cabinet!')
         }
 
         const id = this.state.form.id
@@ -59,15 +56,14 @@ class CabinetStrainForm extends Component {
     }
 
     render() {
+        let message = null;
         if (this.props.error) {
-            this.setState({
-                message: <p className="error">{this.props.error}</p>
-            });
+            message = <p className="error">{this.props.error}</p>
         }
 
         return (
             <div className="dropdown-form">
-                {this.state.message}
+                {message}
                 <h3 className="form-heading">Add a strain to your cabinet!</h3>
                 <form onSubmit={this.handleSubmit}>
                     <Select  

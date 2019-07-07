@@ -1,0 +1,31 @@
+.details {
+    margin: 35px auto;
+    width: 80%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 3px #CCC;
+    border: 1px solid #EEE;
+    background-color: white;
+}
+
+.details h2 {
+    font-family: 'Lobster', cursive;
+}
+
+.details h4 {
+    text-decoration: underline;
+}
+
+.sativa {
+    color: coral;
+}
+
+.indica {
+    color: darkviolet;
+}
+
+.hybrid {
+    color: dodgerblue;
+}

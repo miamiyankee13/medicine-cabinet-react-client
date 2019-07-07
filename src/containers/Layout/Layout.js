@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { fetchStrains } from '../../actions/strains';
 import Header from '../../components/Header/Header';
 import MobileNav from '../../components/Navigation/MobileNav/MobileNav';
 import Footer from '../../components/Footer/Footer';
@@ -9,10 +8,6 @@ import styles from './Layout.module.css';
 class Layout extends Component {
     state = {
         showMobileNav: false
-    }
-
-    componentDidMount() {
-        this.props.dispatch(fetchStrains());
     }
 
     handleMobileNavToggle = () => {

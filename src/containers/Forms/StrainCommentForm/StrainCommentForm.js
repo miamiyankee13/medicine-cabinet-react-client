@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addCommentToStrain, fetchCurrentStrain } from '../../../actions/strains';
 import Textarea from '../../../components/UI/FormElements/Textarea/Textarea';
 import Button from '../../../components/UI/Button/Button';
 
@@ -31,7 +32,15 @@ class StrainCommentForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        //addCommentToStrain
+        const strain = this.props.strain;
+        const content = this.state.form.comment;
+        const author = this.props.currentUser;
+        this.props.dispatch(addCommentToStrain(strain._id, content, author))
+            .then(() => this.props.dispatch(fetchCurrentStrain(strain._id)));
+        this.setState({
+            value: ''
+        });
+
         window.scrollTo(0,0);
     }
 
@@ -67,6 +76,8 @@ class StrainCommentForm extends Component {
 }
 
 const mapStateToProps = state => ({
+    strain: state.strainData.currentStrain,
+    currentUser: state.auth.currentUser.userName,
     loading: state.strainData.loading,
     error: state.strainData.error
 });

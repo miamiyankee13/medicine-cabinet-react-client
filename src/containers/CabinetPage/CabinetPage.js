@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { fetchUserStrains, removeStrainFromCabinet } from '../../actions/strains';
+import { fetchStrains, fetchUserStrains, removeStrainFromCabinet } from '../../actions/strains';
 import CabinetStrain from './CabinetStrain/CabinetStrain';
 import CabinetStrainForm from '../Forms/CabinetStrainForm/CabinetStrainForm';
 import CabinetFilterForm from '../Forms/CabinetFilterForm/CabinetFilterForm';
@@ -13,9 +13,9 @@ class CabinetPage extends Component {
     };
     
     componentDidMount() {
+        this.props.dispatch(fetchStrains());
         this.props.dispatch(fetchUserStrains());
     }
-
 
     handleEnableFilter = filter => {
         this.setState({
@@ -41,6 +41,15 @@ class CabinetPage extends Component {
     }
 
     render() {
+        if (this.props.loading) {
+            return <h3>Loading...</h3>
+        }
+
+        let message = null;
+        if (this.props.error) {
+            message = <p className="error">{this.props.error}</p>
+        }
+        
         this.props.userStrains.sort((a, b) => {
             const nameA = a.name.toLowerCase();
             const nameB = b.name.toLowerCase();
@@ -72,6 +81,7 @@ class CabinetPage extends Component {
                     />
                 </section>
                 <section className={styles.cabinetInfo}>
+                    {message}
                     {this.state.filtered ? <h3>{`${this.state.filter} Strains in Cabinet: ${strains.length}`}</h3> : <h3>Strains in Cabinet: {strains.length}</h3>}
                 </section>
                 <section className={styles.strains}>
@@ -84,6 +94,7 @@ class CabinetPage extends Component {
 
 const mapStateToProps = state => ({
     userStrains: state.strainData.userStrains,
+    loading: state.strainData.loading,
     error: state.strainData.error
 });
 
