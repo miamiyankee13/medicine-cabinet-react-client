@@ -37,6 +37,7 @@ class CabinetFilterForm extends Component {
         if (type === 'All') {
             this.props.dispatch(fetchUserStrains())
                 .then(() => {
+                    this.props.disableFilter();
                     this.setState({
                         form: {
                             type: ''
@@ -48,6 +49,7 @@ class CabinetFilterForm extends Component {
         } else {
             this.props.dispatch(filterUserStrains(type))
                 .then(() => {
+                    this.props.enableFilter(type);
                     this.setState({
                         form: {
                             type: ''

@@ -1,0 +1,37 @@
+.cabinetStrain {
+    margin: 1rem 0.5rem;
+    width: 25%;
+    min-width: 300px;
+    min-height: 15.625rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    box-shadow: 0 2px 3px #CCC;
+    border: 1px solid #EEE;
+    font-size: inherit;
+}
+
+.cabinetStrain h2 {
+    font-family: 'Lobster', cursive;
+}
+
+@media (min-width: 50rem) {
+    .cabinetStrain:hover,
+    .cabinetStrain:active {
+        animation: push-up 1s ease-out forwards;
+    }
+}
+
+@keyframes push-up {
+    0% {
+        transform: translateY(0);
+    }
+    33% {
+        transform: translateY(-1.2rem);
+    }
+    100% {
+        transform: translateY(-1rem);
+    }
+}

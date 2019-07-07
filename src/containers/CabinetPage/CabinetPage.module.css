@@ -1,0 +1,29 @@
+.filters {
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.cabinetInfo {
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    text-align: center;
+}
+
+.strains {
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 50rem) {
+    .filters {
+        flex-direction: row;
+    }
+}

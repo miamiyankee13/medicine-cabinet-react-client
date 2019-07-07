@@ -13,10 +13,6 @@ class CabinetStrainForm extends Component {
         message: null
     }
 
-    componentDidMount() {
-        this.props.dispatch(fetchUserStrains());
-    }
-
     handleInputChange = (event, inputId) => {
         const updatedForm = {
             ...this.state.form
