@@ -51,7 +51,7 @@ class LoginForm extends Component {
         }
 
         return (
-            <section className="info-form">
+            <section className="info-form" aria-live="polite">
                 {message}
                 <h3 className="form-heading">Log in to view your cabinet!</h3>
                 <form onSubmit={this.handleSubmit}>

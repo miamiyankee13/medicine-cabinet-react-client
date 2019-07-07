@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './StrainDetails.module.css';
 
 const StrainDetails = props => (
-    <section className={styles.details}>
+    <section className={styles.details} aria-live="polite">
         <h2>{props.name}</h2>
         {
             props.type === "Sativa" ? <h3 className={styles.sativa}>Sativa</h3> :

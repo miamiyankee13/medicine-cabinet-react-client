@@ -64,7 +64,7 @@ class CabinetFilterForm extends Component {
 
     render() {
         return (
-            <div className="dropdown-form">
+            <div className="dropdown-form" aria-live="polite">
                 <h3 className="form-heading">Filter strains by type!</h3>
                 <form onSubmit={this.handleSubmit}>
                     <Select 

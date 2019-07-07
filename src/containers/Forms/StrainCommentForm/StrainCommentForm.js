@@ -51,7 +51,7 @@ class StrainCommentForm extends Component {
         }
 
         return (
-            <section className="info-form">
+            <section className="info-form" aria-live="polite">
                 {message}
                 <h3 className="form-heading">Add a comment!</h3>
                 <form onSubmit={this.handleSubmit}>

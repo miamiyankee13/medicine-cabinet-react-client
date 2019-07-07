@@ -83,7 +83,7 @@ class EditForm extends Component {
         }
 
         return (
-            <section className="info-form">
+            <section className="info-form" aria-live="polite">
                 {message}
                 <h3 className="form-heading">Edit an existing strain!</h3>
                 <form onSubmit={this.handleSubmit}>

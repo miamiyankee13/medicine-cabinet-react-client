@@ -57,7 +57,7 @@ class CabinetStrainForm extends Component {
 
     render() {
         return (
-            <div className="dropdown-form">
+            <div className="dropdown-form" aria-live="polite">
                 <h3 className="form-heading">Add a strain to your cabinet!</h3>
                 <form onSubmit={this.handleSubmit}>
                     <Select  

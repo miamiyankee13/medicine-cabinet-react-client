@@ -67,7 +67,7 @@ class RegistrationForm extends Component {
         }
 
         return (
-            <section className="info-form">
+            <section className="info-form" aria-live="polite">
                 {message}
                 <h3 className="form-heading">Register to join the Medicine Cabinet community!</h3>
                 <form onSubmit={this.handleSubmit}>

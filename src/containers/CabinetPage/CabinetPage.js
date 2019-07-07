@@ -74,17 +74,17 @@ class CabinetPage extends Component {
 
         return (
             <Fragment>
-                <section className={styles.filters}>
+                <section className={styles.filters} aria-live="polite">
                     <CabinetStrainForm />
                     <CabinetFilterForm
                         enableFilter={this.handleEnableFilter} 
                         disableFilter={this.handleDisableFilter}
                     />
                 </section>
-                <section className={styles.cabinetInfo}>
+                <section className={styles.cabinetInfo} aria-live="polite">
                     {this.state.filtered ? <h3>{`${this.state.filter} Strains in Cabinet: ${strains.length}`}</h3> : <h3>Strains in Cabinet: {strains.length}</h3>}
                 </section>
-                <section className={styles.strains}>
+                <section className={styles.strains} aria-live="polite">
                     {strains}
                 </section>
             </Fragment>
