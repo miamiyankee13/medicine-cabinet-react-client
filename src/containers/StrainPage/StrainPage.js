@@ -44,13 +44,14 @@ class StrainPage extends Component {
                 let date = new Date(comment.created);
                 let month = date.getMonth() + 1;
                 let day = date.getDate();
+                let year = date.getFullYear();
                 let time = date.toLocaleTimeString();
     
                 return (
                     <div key={comment._id} className={styles.comments}>
                         <p>{comment.content}</p>
-                        <p><small>Posted by {comment.author}</small></p>
-                        <p><small>{month}/{day} @ {time}</small></p>
+                        <p className={styles.commentInfo}><small>Posted by <em>{comment.author}</em></small></p>
+                        <p className={styles.commentInfo}><small>{month}/{day}/{year} @ {time}</small></p>
                         {removeButton}
                     </div>
                 );

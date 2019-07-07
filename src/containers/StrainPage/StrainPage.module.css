@@ -1,6 +1,17 @@
 .comments {
     margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
     width: 80%;
     max-width: 500px;
     text-align: center;
+}
+
+.commentInfo {
+    margin: 0;
+}
+
+.commentInfo em {
+    color: forestgreen;
+    font-weight: bold;
 }

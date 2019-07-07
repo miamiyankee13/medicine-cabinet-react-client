@@ -1,13 +1,12 @@
 .details {
     margin: 35px auto;
+    padding: 15px;
     width: 80%;
     max-width: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     box-shadow: 0 2px 3px #CCC;
     border: 1px solid #EEE;
     background-color: white;
+    text-align: center;
 }
 
 .details h2 {
@@ -16,6 +15,7 @@
 
 .details h4 {
     text-decoration: underline;
+    color: forestgreen;
 }
 
 .sativa {
