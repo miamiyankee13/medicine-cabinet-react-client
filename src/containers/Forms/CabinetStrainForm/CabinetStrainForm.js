@@ -56,14 +56,8 @@ class CabinetStrainForm extends Component {
     }
 
     render() {
-        let message = null;
-        if (this.props.error) {
-            message = <p className="error">{this.props.error}</p>
-        }
-
         return (
             <div className="dropdown-form">
-                {message}
                 <h3 className="form-heading">Add a strain to your cabinet!</h3>
                 <form onSubmit={this.handleSubmit}>
                     <Select  
@@ -85,7 +79,6 @@ class CabinetStrainForm extends Component {
 const mapStateToProps = state => ({
     strains: state.strainData.strains,
     userStrains: state.strainData.userStrains,
-    error: state.strainData.error
 });
 
 export default connect(mapStateToProps)(CabinetStrainForm);

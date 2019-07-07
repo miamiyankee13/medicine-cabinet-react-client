@@ -45,10 +45,6 @@ class StrainCommentForm extends Component {
     }
 
     render() {
-        if (this.props.loading) {
-            return <h3>Loading...</h3>
-        }
-
         let message = null;
         if (this.props.error) {
             message = <p className="error">{this.props.error}</p>
@@ -78,7 +74,6 @@ class StrainCommentForm extends Component {
 const mapStateToProps = state => ({
     strain: state.strainData.currentStrain,
     currentUser: state.auth.currentUser.userName,
-    loading: state.strainData.loading,
     error: state.strainData.error
 });
 

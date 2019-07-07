@@ -5,6 +5,7 @@ import requiresLogin from '../../hoc/requiresLogin/requiresLogin';
 import Button from '../../components/UI/Button/Button';
 import StrainDetails from './StrainDetails/StrainDetails';
 import StrainCommentForm from '../Forms/StrainCommentForm/StrainCommentForm';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import styles from './StrainPage.module.css';
 
 class StrainPage extends Component {
@@ -23,13 +24,12 @@ class StrainPage extends Component {
     }
 
     render() {
-        if (this.props.loading || !this.props.strain) {
-            return <h3>Loading...</h3>
+        if (this.props.error) {
+            return <p className="error">{this.props.error}</p>
         }
 
-        let message = null;
-        if (this.props.error) {
-            message = <p className="error">{this.props.error}</p>
+        if (this.props.loading || !this.props.strain) {
+            return <Spinner />;
         }
 
         let comments = <p>{`Be the first to leave a comment about ${this.props.strain.name}!`}</p>
@@ -59,7 +59,6 @@ class StrainPage extends Component {
         
         return (
             <Fragment>
-                {message}
                 <StrainDetails 
                     name={this.props.strain.name}
                     type={this.props.strain.type}

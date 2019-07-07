@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStrain, clearFeedback } from '../../../actions/strains';
+import requiresLogin from '../../../hoc/requiresLogin/requiresLogin';
 import Input from '../../../components/UI/FormElements/Input/Input';
 import Select from '../../../components/UI/FormElements/Select/Select';
 import Button from '../../../components/UI/Button/Button';
@@ -59,10 +60,6 @@ class AddForm extends Component {
     }
 
     render() {
-        if (this.props.loading) {
-            return <h3>Loading...</h3>
-        }
-
         let message = null;
         if (this.props.error) {
             message = <p className="error">{this.props.error}</p>
@@ -118,9 +115,8 @@ class AddForm extends Component {
 }
 
 const mapStateToProps = state => ({
-    loading: state.strainData.loading,
     feedback: state.strainData.feedback,
     error: state.strainData.error
 });
 
-export default connect(mapStateToProps)(AddForm);
+export default requiresLogin()(connect(mapStateToProps)(AddForm));
