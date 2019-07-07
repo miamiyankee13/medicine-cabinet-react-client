@@ -41,6 +41,7 @@ class AddForm extends Component {
     }
 
     handleSubmit = event => {
+        event.preventDefault();
         const name = this.state.form.name;
         const type = this.state.form.type;
         const flavor = this.state.form.flavor;
