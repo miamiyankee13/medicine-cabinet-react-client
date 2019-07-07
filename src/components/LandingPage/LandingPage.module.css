@@ -13,12 +13,6 @@
     text-align: left;
 }
 
-.landingImage {
-    border: 2px solid forestgreen;
-    border-radius: 30px;
-    margin-top: 20px;
-}
-
 .buttons {
     display: flex;
     justify-content: space-evenly;

@@ -30,12 +30,6 @@ class LandingPage extends Component {
                     specific strains, the more information will be available to medical patients all over 
                     the world!
                 </p>
-                <img 
-                    src="https://i.postimg.cc/mkSXbWqC/landing-page-img-1.jpg" 
-                    alt="Green & Pink Cannabis Plant" 
-                    height="225" width="250" 
-                    className={styles.landingImage} 
-                />
                 <div className={styles.buttons}>
                     <Button clicked={this.handleLogin}>Log In</Button>
                     <Button clicked={this.handleRegistration}>Register</Button>
