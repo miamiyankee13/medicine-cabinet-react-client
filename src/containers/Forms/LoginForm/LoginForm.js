@@ -73,6 +73,10 @@ class LoginForm extends Component {
                     />
                     <Button disabled={!this.state.formIsValid}>Log In</Button>
                 </form>
+                <div className="test-credentials">
+                    <p>Username: testuser</p>
+                    <p>Password: testpassword</p>
+                </div>
             </section>
         );
     }

@@ -91,6 +91,10 @@ body {
     text-align: center;
 }
 
+.test-credentials {
+    color: red;
+}
+
 .not-found {
     text-align: center;
 }
