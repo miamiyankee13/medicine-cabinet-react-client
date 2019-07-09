@@ -28,6 +28,7 @@ class StrainPage extends Component {
             return <p className="error">{this.props.error}</p>
         }
 
+        //TODO mess with moving spinner to StrainCommentForm and/or StrainDetails
         if (this.props.loading || !this.props.strain) {
             return <Spinner />;
         }
