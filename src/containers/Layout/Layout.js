@@ -10,12 +10,14 @@ class Layout extends Component {
         showMobileNav: false
     }
 
+    //toggle mobile nav visibility
     handleMobileNavToggle = () => {
         this.setState(prevState => {
             return { showMobileNav: !prevState.showMobileNav };
         });
     }
 
+    //scroll to top of window
     handleScrollTop = () => {
         window.scrollTo(0,0);
     }
