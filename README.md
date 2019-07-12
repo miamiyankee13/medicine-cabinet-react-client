@@ -27,4 +27,11 @@ Coming soon!
 * Redux
 
 ## Screenshots
-Coming soon!
+[![landing-page.png](https://i.postimg.cc/8knpsbsn/landing-page.png)](https://postimg.cc/z3KZcKCn)
+[![register-page.png](https://i.postimg.cc/Kz0ZPPfj/register-page.png)](https://postimg.cc/cg8yZ8VG)
+[![login-page.png](https://i.postimg.cc/T1SfSTZX/login-page.png)](https://postimg.cc/Cnj3nphv)
+[![cabinet-page.png](https://i.postimg.cc/CKVLSLdh/cabinet-page.png)](https://postimg.cc/0zcqCvpF)
+[![strain-page.png](https://i.postimg.cc/R0QCF5nc/strain-page.png)](https://postimg.cc/cKCG9zhH)
+[![add-page.png](https://i.postimg.cc/mkhT8Ppw/add-page.png)](https://postimg.cc/N2qh0jc9)
+[![edit-page.png](https://i.postimg.cc/fLzzS2x1/edit-page.png)](https://postimg.cc/KKWSd5p5)
+[![mobile-view.png](https://i.postimg.cc/dVCtbTsN/mobile-view.png)](https://postimg.cc/FY94czJ0)
