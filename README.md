@@ -35,3 +35,6 @@ Coming soon!
 [![add-page.png](https://i.postimg.cc/mkhT8Ppw/add-page.png)](https://postimg.cc/N2qh0jc9)
 [![edit-page.png](https://i.postimg.cc/fLzzS2x1/edit-page.png)](https://postimg.cc/KKWSd5p5)
 [![mobile-view.png](https://i.postimg.cc/dVCtbTsN/mobile-view.png)](https://postimg.cc/FY94czJ0)
+
+## Authors
+* **Anthony D'Amico** [miamiyankee13](https://github.com/miamiyankee13)
