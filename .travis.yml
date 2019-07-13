@@ -1,0 +1,14 @@
+language: node_js
+node_js: node
+cache:
+  directories:
+  - node_modules
+env:
+- CI=true
+deploy:
+  provider: heroku
+  api_key:
+    secure: fj7UwQk+3O0OP54+x+mb2WPmBounIK3VfE6GOU6g3rEDxVazK58xYHjZl+DOY3pvo7/3IW8RSorO1MWJZ1BZwlDSrrSscO/nCTtKZVSF9gpE6fDJ65vE+oxMIlcTXGz0rQoQfZ6NDG8qKAoOBk2Qqh2OA72EV9Q0NtkK3Exlx5z9aX3FTLH16RetQ27YE8WK/Ja8bYP4kvpJKzNexlRs3zmvXNAlh+O3FuYScSKol9Bhjv4kxRuy8nZfRp969UZyXyF5C/kgx8prhAHqG2f041SMwEUg+q28oTn2TrKXZc9SFp34NgtULndykSvB7zSDhKYfiBQk2ET+sC5owp6SQ4CIMUBzzWzOgYbBCZe0BX1EHodkfAltCHHCRQBMyWR6r9zLu0fmchmpLhrInxsVu14Mvqem9oF87uk+hCuo6ZvGRMub8v116yA1yYpt/BZEmava4oSGSvds3ylToSkCoenPshpcAnNu7GEw5kUfYV9pKzGHlLDchlbjVwAsjWbpUyNmDDfUkqJwEG2AOzgcG9UJRZuPQxtEb8pHg2yYniVCf94CZTKbWi/JXXa3xDjpW2HUqOT/QO+H4zNIIDFijdjdxPaqEedEs8IyBmSGb2AmtEag8cnuf1/y/ujHNVIXLOLBt9So2Bb6g4x9YJiBMxMK+Dn9N29TXJM1OCDndXY=
+  app: medicine-cabinet
+  on:
+    repo: miamiyankee13/medicine-cabinet-react-client
