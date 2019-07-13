@@ -12,12 +12,13 @@ import CabinetPage from './containers/CabinetPage/CabinetPage';
 import StrainPage from './containers/StrainPage/StrainPage';
 
 class App extends Component {
+
+    //if logged in, refresh the auth token periodically
+    //stop refreshing when we log out
     componentDidUpdate(prevProps) {
         if (!prevProps.loggedIn && this.props.loggedIn) {
-            // When we are logged in, refresh the auth token periodically
             this.startPeriodicRefresh();
         } else if (prevProps.loggedIn && !this.props.loggedIn) {
-            // Stop refreshing when we log out
             this.stopPeriodicRefresh();
         }
     }
