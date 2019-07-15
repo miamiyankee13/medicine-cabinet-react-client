@@ -46,4 +46,34 @@ describe('Strains Reducer', function() {
             });
         });
     });
+
+    describe('fetchStrainsSuccess', function() {
+        it('Should set strains', function() {
+            const data = { strains: mockData.strains };
+            const state = strainsReducer(initialState, fetchStrainsSuccess(data));
+            expect(state).toEqual({
+                strains: mockData.strains,
+                userStrains: [],
+                currentStrain: null,
+                loading: false,
+                feedback: null,
+                error: null
+            });
+        });
+    });
+
+    describe('fetchStrainsError', function() {
+        it('Should set error', function() {
+            const error = mockData.error;
+            const state = strainsReducer(initialState, fetchStrainsError(error));
+            expect(state).toEqual({
+                strains: [],
+                userStrains: [],
+                currentStrain: null,
+                loading: false,
+                feedback: null,
+                error: mockData.error.message
+            });
+        });
+    });
 });
