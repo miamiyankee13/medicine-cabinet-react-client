@@ -5,7 +5,10 @@ import {
     fetchStrainsError,
     fetchUserStrainsRequest,
     fetchUserStrainsSuccess,
-    fetchUserStrainsError
+    fetchUserStrainsError,
+    fetchCurrentStrainRequest,
+    fetchCurrentStrainSuccess,
+    fetchCurrentStrainError
 } from '../../actions/strains';
 
 describe('Strains Reducer', function() {
@@ -55,7 +58,7 @@ describe('Strains Reducer', function() {
             const data = { strains: mockData.strains };
             const state = strainsReducer(initialState, fetchStrainsSuccess(data));
             expect(state).toEqual({
-                strains: mockData.strains,
+                strains: data.strains,
                 userStrains: [],
                 currentStrain: null,
                 loading: false,
@@ -75,7 +78,7 @@ describe('Strains Reducer', function() {
                 currentStrain: null,
                 loading: false,
                 feedback: null,
-                error: mockData.error.message
+                error: error.message
             });
         });
     });
@@ -100,7 +103,7 @@ describe('Strains Reducer', function() {
             const state = strainsReducer(initialState, fetchUserStrainsSuccess(data));
             expect(state).toEqual({
                 strains: [],
-                userStrains:  mockData.userStrains,
+                userStrains: data.strains,
                 currentStrain: null,
                 loading: false,
                 feedback: null,
@@ -119,7 +122,51 @@ describe('Strains Reducer', function() {
                 currentStrain: null,
                 loading: false,
                 feedback: null,
-                error: mockData.error.message
+                error: error.message
+            });
+        });
+    });
+
+    describe('fetchCurrentStrainRequest', function() {
+        it('Should make request', function() {
+            const state = strainsReducer(initialState, fetchCurrentStrainRequest());
+            expect(state).toEqual({
+                strains: [],
+                userStrains: [],
+                currentStrain: null,
+                loading: true,
+                feedback: null,
+                error: null
+            });
+        });
+    });
+
+    describe('fetchCurrentStrainSuccess', function() {
+        it('Should set current strain', function() {
+            const data = mockData.currentStrain;
+            const state = strainsReducer(initialState, fetchCurrentStrainSuccess(data));
+            expect(state).toEqual({
+                strains: [],
+                userStrains: [],
+                currentStrain: data,
+                loading: false,
+                feedback: null,
+                error: null
+            });
+        });
+    });
+
+    describe('fetchCurrentStrainError', function() {
+        it('Should set error', function() {
+            const error = mockData.error;
+            const state = strainsReducer(initialState, fetchCurrentStrainError(error));
+            expect(state).toEqual({
+                strains: [],
+                userStrains: [],
+                currentStrain: null,
+                loading: false,
+                feedback: null,
+                error: error.message
             });
         });
     });
