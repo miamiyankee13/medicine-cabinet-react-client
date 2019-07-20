@@ -9,6 +9,7 @@ import {
     FETCH_CURRENT_STRAIN_REQUEST,
     FETCH_CURRENT_STRAIN_SUCCESS,
     FETCH_CURRENT_STRAIN_ERROR,
+    RESET_CURRENT_STRAIN,
     fetchStrainsRequest,
     fetchStrainsSuccess,
     fetchStrainsError,
@@ -17,7 +18,8 @@ import {
     fetchUserStrainsError,
     fetchCurrentStrainRequest,
     fetchCurrentStrainSuccess,
-    fetchCurrentStrainError
+    fetchCurrentStrainError,
+    resetCurrentStrain
 } from '../strains';
 
 describe('Action Creators', function() {
@@ -100,6 +102,13 @@ describe('Action Creators', function() {
             const action = fetchCurrentStrainError(error);
             expect(action.type).toEqual(FETCH_CURRENT_STRAIN_ERROR);
             expect(action.error).toEqual(error)
+        });
+    });
+
+    describe('resetCurrentStrain', function() {
+        it('Should return the action', function() {
+            const action = resetCurrentStrain();
+            expect(action.type).toEqual(RESET_CURRENT_STRAIN);
         });
     });
 })

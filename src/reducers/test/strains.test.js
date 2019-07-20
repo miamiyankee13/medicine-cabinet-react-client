@@ -8,7 +8,8 @@ import {
     fetchUserStrainsError,
     fetchCurrentStrainRequest,
     fetchCurrentStrainSuccess,
-    fetchCurrentStrainError
+    fetchCurrentStrainError,
+    resetCurrentStrain
 } from '../../actions/strains';
 
 describe('Strains Reducer', function() {
@@ -168,6 +169,21 @@ describe('Strains Reducer', function() {
                 feedback: null,
                 error: error.message
             });
+        });
+    });
+
+    describe('resetCurrentStrain', function() {
+        it('Should clear current strain', function() {
+            const currentState = {
+                strains: [],
+                userStrains: [],
+                currentStrain: mockData.currentStrain,
+                loading: false,
+                feedback: null,
+                error: null
+            }
+            const state = strainsReducer(currentState, resetCurrentStrain());
+            expect(state).toEqual(initialState);
         });
     });
 });
