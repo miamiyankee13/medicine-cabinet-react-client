@@ -6,6 +6,9 @@ import {
     FETCH_USER_STRAINS_REQUEST,
     FETCH_USER_STRAINS_SUCCESS,
     FETCH_USER_STRAINS_ERROR,
+    FILTER_USER_STRAINS_REQUEST,
+    FILTER_USER_STRAINS_SUCCESS,
+    FILTER_USER_STRAINS_ERROR,
     FETCH_CURRENT_STRAIN_REQUEST,
     FETCH_CURRENT_STRAIN_SUCCESS,
     FETCH_CURRENT_STRAIN_ERROR,
@@ -16,6 +19,9 @@ import {
     fetchUserStrainsRequest,
     fetchUserStrainsSuccess,
     fetchUserStrainsError,
+    filterUserStrainsRequest,
+    filterUserStrainsSuccess,
+    filterUserStrainsError,
     fetchCurrentStrainRequest,
     fetchCurrentStrainSuccess,
     fetchCurrentStrainError,
@@ -76,6 +82,31 @@ describe('Action Creators', function() {
             const error = mockData.error;
             const action = fetchUserStrainsError(error);
             expect(action.type).toEqual(FETCH_USER_STRAINS_ERROR);
+            expect(action.error).toEqual(error)
+        });
+    });
+
+    describe('filterUserStrainsRequest', function() {
+        it('Should return the action', function() {
+            const action = filterUserStrainsRequest();
+            expect(action.type).toEqual(FILTER_USER_STRAINS_REQUEST);
+        });
+    });
+
+    describe('filterUserStrainsSuccess', function() {
+        it('Should return the action', function() {
+            const userStrains = mockData.userStrains;
+            const action = filterUserStrainsSuccess(userStrains);
+            expect(action.type).toEqual(FILTER_USER_STRAINS_SUCCESS);
+            expect(action.data).toEqual(userStrains)
+        });
+    });
+
+    describe('filterUserStrainsError', function() {
+        it('Should return the action', function() {
+            const error = mockData.error;
+            const action = filterUserStrainsError(error);
+            expect(action.type).toEqual(FILTER_USER_STRAINS_ERROR);
             expect(action.error).toEqual(error)
         });
     });
