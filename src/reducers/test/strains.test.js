@@ -131,6 +131,50 @@ describe('Strains Reducer', function() {
         });
     });
 
+    describe('filterUserStrainsRequest', function() {
+        it('Should make request', function() {
+            const state = strainsReducer(initialState, filterUserStrainsRequest());
+            expect(state).toEqual({
+                strains: [],
+                userStrains: [],
+                currentStrain: null,
+                loading: true,
+                feedback: null,
+                error: null
+            });
+        });
+    });
+
+    describe('filterUserStrainsSuccess', function() {
+        it('Should set strains', function() {
+            const data = { strains: mockData.userStrains };
+            const state = strainsReducer(initialState, filterUserStrainsSuccess(data));
+            expect(state).toEqual({
+                strains: [],
+                userStrains: data.strains,
+                currentStrain: null,
+                loading: false,
+                feedback: null,
+                error: null
+            });
+        });
+    });
+
+    describe('filterUserStrainsError', function() {
+        it('Should set error', function() {
+            const error = mockData.error;
+            const state = strainsReducer(initialState, filterUserStrainsError(error));
+            expect(state).toEqual({
+                strains: [],
+                userStrains: [],
+                currentStrain: null,
+                loading: false,
+                feedback: null,
+                error: error.message
+            });
+        });
+    });
+
     describe('fetchCurrentStrainRequest', function() {
         it('Should make request', function() {
             const state = strainsReducer(initialState, fetchCurrentStrainRequest());
