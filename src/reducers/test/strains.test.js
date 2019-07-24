@@ -12,7 +12,10 @@ import {
     fetchCurrentStrainRequest,
     fetchCurrentStrainSuccess,
     fetchCurrentStrainError,
-    resetCurrentStrain
+    resetCurrentStrain,
+    createStrainRequest,
+    createStrainSuccess,
+    createStrainError
 } from '../../actions/strains';
 
 describe('Strains Reducer', function() {
@@ -231,6 +234,49 @@ describe('Strains Reducer', function() {
             }
             const state = strainsReducer(currentState, resetCurrentStrain());
             expect(state).toEqual(initialState);
+        });
+    });
+
+    describe('createStrainRequest', function() {
+        it('Should make request', function() {
+            const state = strainsReducer(initialState, createStrainRequest());
+            expect(state).toEqual({
+                strains: [],
+                userStrains: [],
+                currentStrain: null,
+                loading: true,
+                feedback: null,
+                error: null
+            });
+        });
+    });
+
+    describe('createStrainSuccess', function() {
+        it('Should set feedback', function() {
+            const state = strainsReducer(initialState, createStrainSuccess());
+            expect(state).toEqual({
+                strains: [],
+                userStrains: [],
+                currentStrain: null,
+                loading: false,
+                feedback: 'Strain added!',
+                error: null
+            });
+        });
+    });
+
+    describe('createStrainError', function() {
+        it('Should set error', function() {
+            const error = mockData.error;
+            const state = strainsReducer(initialState, createStrainError(error));
+            expect(state).toEqual({
+                strains: [],
+                userStrains: [],
+                currentStrain: null,
+                loading: false,
+                feedback: null,
+                error: error.message
+            });
         });
     });
 });
