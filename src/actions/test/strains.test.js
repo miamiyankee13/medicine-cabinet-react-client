@@ -16,6 +16,9 @@ import {
     CREATE_STRAIN_REQUEST,
     CREATE_STRAIN_SUCCESS,
     CREATE_STRAIN_ERROR,
+    EDIT_STRAIN_REQUEST,
+    EDIT_STRAIN_SUCCESS,
+    EDIT_STRAIN_ERROR,
     fetchStrainsRequest,
     fetchStrainsSuccess,
     fetchStrainsError,
@@ -31,7 +34,10 @@ import {
     resetCurrentStrain,
     createStrainRequest,
     createStrainSuccess,
-    createStrainError
+    createStrainError,
+    editStrainRequest,
+    editStrainSuccess,
+    editStrainError
 } from '../strains';
 
 describe('Action Creators', function() {
@@ -168,6 +174,29 @@ describe('Action Creators', function() {
             const error = mockData.error;
             const action = createStrainError(error);
             expect(action.type).toEqual(CREATE_STRAIN_ERROR);
+            expect(action.error).toEqual(error);
+        });
+    });
+
+    describe('editStrainRequest', function() {
+        it('Should return the action', function() {
+            const action = editStrainRequest();
+            expect(action.type).toEqual(EDIT_STRAIN_REQUEST);
+        });
+    });
+
+    describe('editStrainSuccess', function() {
+        it('Should return the action', function() {
+            const action = editStrainSuccess();
+            expect(action.type).toEqual(EDIT_STRAIN_SUCCESS);
+        });
+    });
+
+    describe('editStrainError', function() {
+        it('Should return the action', function() {
+            const error = mockData.error;
+            const action = editStrainError(error);
+            expect(action.type).toEqual(EDIT_STRAIN_ERROR);
             expect(action.error).toEqual(error);
         });
     });
