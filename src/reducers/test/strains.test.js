@@ -15,7 +15,10 @@ import {
     resetCurrentStrain,
     createStrainRequest,
     createStrainSuccess,
-    createStrainError
+    createStrainError,
+    editStrainRequest,
+    editStrainSuccess,
+    editStrainError
 } from '../../actions/strains';
 
 describe('Strains Reducer', function() {
@@ -269,6 +272,49 @@ describe('Strains Reducer', function() {
         it('Should set error', function() {
             const error = mockData.error;
             const state = strainsReducer(initialState, createStrainError(error));
+            expect(state).toEqual({
+                strains: [],
+                userStrains: [],
+                currentStrain: null,
+                loading: false,
+                feedback: null,
+                error: error.message
+            });
+        });
+    });
+
+    describe('editStrainRequest', function() {
+        it('Should make request', function() {
+            const state = strainsReducer(initialState, editStrainRequest());
+            expect(state).toEqual({
+                strains: [],
+                userStrains: [],
+                currentStrain: null,
+                loading: true,
+                feedback: null,
+                error: null
+            });
+        });
+    });
+
+    describe('createStrainSuccess', function() {
+        it('Should set feedback', function() {
+            const state = strainsReducer(initialState, editStrainSuccess());
+            expect(state).toEqual({
+                strains: [],
+                userStrains: [],
+                currentStrain: null,
+                loading: false,
+                feedback: 'Strain updated!',
+                error: null
+            });
+        });
+    });
+
+    describe('editStrainError', function() {
+        it('Should set error', function() {
+            const error = mockData.error;
+            const state = strainsReducer(initialState, editStrainError(error));
             expect(state).toEqual({
                 strains: [],
                 userStrains: [],
