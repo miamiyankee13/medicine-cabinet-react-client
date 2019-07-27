@@ -19,6 +19,9 @@ import {
     EDIT_STRAIN_REQUEST,
     EDIT_STRAIN_SUCCESS,
     EDIT_STRAIN_ERROR,
+    ADD_STRAIN_TO_CABINET_REQUEST,
+    ADD_STRAIN_TO_CABINET_SUCCESS,
+    ADD_STRAIN_TO_CABINET_ERROR,
     fetchStrainsRequest,
     fetchStrainsSuccess,
     fetchStrainsError,
@@ -37,7 +40,10 @@ import {
     createStrainError,
     editStrainRequest,
     editStrainSuccess,
-    editStrainError
+    editStrainError,
+    addStrainToCabinetRequest,
+    addStrainToCabinetSuccess,
+    addStrainToCabinetError
 } from '../strains';
 
 describe('Action Creators', function() {
@@ -197,6 +203,29 @@ describe('Action Creators', function() {
             const error = mockData.error;
             const action = editStrainError(error);
             expect(action.type).toEqual(EDIT_STRAIN_ERROR);
+            expect(action.error).toEqual(error);
+        });
+    });
+
+    describe('addStrainToCabinetRequest', function() {
+        it('Should return the action', function() {
+            const action = addStrainToCabinetRequest();
+            expect(action.type).toEqual(ADD_STRAIN_TO_CABINET_REQUEST);
+        });
+    });
+
+    describe('addStrainToCabinetSuccess', function() {
+        it('Should return the action', function() {
+            const action = addStrainToCabinetSuccess();
+            expect(action.type).toEqual(ADD_STRAIN_TO_CABINET_SUCCESS);
+        });
+    });
+
+    describe('addStrainToCabinetError', function() {
+        it('Should return the action', function() {
+            const error = mockData.error;
+            const action = addStrainToCabinetError(error);
+            expect(action.type).toEqual(ADD_STRAIN_TO_CABINET_ERROR);
             expect(action.error).toEqual(error);
         });
     });
