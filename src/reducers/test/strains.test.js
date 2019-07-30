@@ -21,7 +21,10 @@ import {
     editStrainError,
     addStrainToCabinetRequest,
     addStrainToCabinetSuccess,
-    addStrainToCabinetError
+    addStrainToCabinetError,
+    removeStrainFromCabinetRequest,
+    removeStrainFromCabinetSuccess,
+    removeStrainFromCabinetError
 } from '../../actions/strains';
 
 describe('Strains Reducer', function() {
@@ -362,6 +365,50 @@ describe('Strains Reducer', function() {
         it('Should set error', function() {
             const error = mockData.error;
             const state = strainsReducer(initialState, addStrainToCabinetError(error));
+            expect(state).toEqual({
+                strains: [],
+                userStrains: [],
+                currentStrain: null,
+                loading: false,
+                feedback: null,
+                error: error.message
+            });
+        });
+    });
+
+    describe('removeStrainFromCabinetRequest', function() {
+        it('Should make request', function() {
+            const state = strainsReducer(initialState, removeStrainFromCabinetRequest());
+            expect(state).toEqual({
+                strains: [],
+                userStrains: [],
+                currentStrain: null,
+                loading: true,
+                feedback: null,
+                error: null
+            });
+        });
+    });
+
+    describe('removeStrainFromCabinetSuccess', function() {
+        it('Should reset loading', function() {
+            const currentState = {
+                strains: [],
+                userStrains: [],
+                currentStrain: null,
+                loading: true,
+                feedback: null,
+                error: null
+            }
+            const state = strainsReducer(currentState, removeStrainFromCabinetSuccess());
+            expect(state).toEqual(initialState);
+        });
+    });
+
+    describe('removeStrainFromCabinetError', function() {
+        it('Should set error', function() {
+            const error = mockData.error;
+            const state = strainsReducer(initialState, removeStrainFromCabinetError(error));
             expect(state).toEqual({
                 strains: [],
                 userStrains: [],
