@@ -25,6 +25,9 @@ import {
     REMOVE_STRAIN_FROM_CABINET_REQUEST,
     REMOVE_STRAIN_FROM_CABINET_SUCCESS,
     REMOVE_STRAIN_FROM_CABINET_ERROR,
+    ADD_COMMENT_TO_STRAIN_REQUEST,
+    ADD_COMMENT_TO_STRAIN_SUCCESS,
+    ADD_COMMENT_TO_STRAIN_ERROR,
     fetchStrainsRequest,
     fetchStrainsSuccess,
     fetchStrainsError,
@@ -49,7 +52,10 @@ import {
     addStrainToCabinetError,
     removeStrainFromCabinetRequest,
     removeStrainFromCabinetSuccess,
-    removeStrainFromCabinetError
+    removeStrainFromCabinetError,
+    addCommentToStrainRequest,
+    addCommentToStrainSuccess,
+    addCommentToStrainError
 } from '../strains';
 
 describe('Action Creators', function() {
@@ -255,6 +261,29 @@ describe('Action Creators', function() {
             const error = mockData.error;
             const action = removeStrainFromCabinetError(error);
             expect(action.type).toEqual(REMOVE_STRAIN_FROM_CABINET_ERROR);
+            expect(action.error).toEqual(error);
+        });
+    });
+
+    describe('addCommentToStrainRequest', function() {
+        it('Should return the action', function() {
+            const action = addCommentToStrainRequest();
+            expect(action.type).toEqual(ADD_COMMENT_TO_STRAIN_REQUEST);
+        });
+    });
+
+    describe('addCommentToStrainSuccess', function() {
+        it('Should return the action', function() {
+            const action = addCommentToStrainSuccess();
+            expect(action.type).toEqual(ADD_COMMENT_TO_STRAIN_SUCCESS);
+        });
+    });
+
+    describe('addCommentToStrainError', function() {
+        it('Should return the action', function() {
+            const error = mockData.error;
+            const action = addCommentToStrainError(error);
+            expect(action.type).toEqual(ADD_COMMENT_TO_STRAIN_ERROR);
             expect(action.error).toEqual(error);
         });
     });
